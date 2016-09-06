@@ -69,7 +69,7 @@ class App extends Component {
                         Hide Completed Tasks
                     </label>
 
-                    <AccountsUIWrapper />
+                    
 
                     { this.props.currentUser ?
                         <form onSubmit = {this.handleSubmit.bind(this) } className="new-task">
