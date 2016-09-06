@@ -1,14 +1,38 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
+
+import { Tasks } from '../api/tasks.js';
 
 // Task component - represents a single todo item
 export default class Task extends Component {
-    render() {
-        console.log(this.test);        
-        console.log(this.props.task);
-        let taskObj = this.props.task;
-        taskObj._id = 'bla bla';
+    toggleChecked() {
+        Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
+    }
+
+    deleteThisTask () {
+        Meteor.call('tasks.remove', this.props.task._id);
+    }
+
+    render() {        
+
+        const taskClassName = this.props.task.checked ? 'checked' : '';
+
         return (
-            <li>{this.props.task.text} <p> {taskObj._id} </p> </li>            
+            <li className={taskClassName}> 
+                <button className="delete" onClick={this.deleteThisTask.bind(this)}> &times;</button>
+            
+                <input 
+                    type="checkbox"
+                    readOnly
+                    checked={this.props.task.checked}
+                    onClick={this.toggleChecked.bind(this)}    
+                />
+                
+                <span className="text">
+                    <strong>{this.props.task.username}</strong>: {this.props.task.text}
+                </span>
+            </li>
+                                  
         );
     }    
 }

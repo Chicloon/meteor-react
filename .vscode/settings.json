@@ -1,0 +1,5 @@
+// Поместите параметры в этот файл, чтобы перезаписать параметры по умолчанию.
+{
+    "editor.renderIndentGuides": true,
+    "editor.wrappingColumn": 0
+}
