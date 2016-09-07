@@ -5,14 +5,22 @@ import { check } from 'meteor/check';
 export const Abstracts = new Mongo.Collection('abstracts');
 
 if (Meteor.isServer) {
-    console.log ('test');
-    Meteor.publish('abstracts', ()=>Abstracts.find({}));
+    Meteor.publish('abstracts', () => {
+        
+        return Abstracts.find({});
+    })
+
 }
 
-if (Abstracts.find({}).fetch()=='') {
-    console.log('no entry found');
-    Abstracts.insert({       
-            createdAt: new Date(),            
-            private: false
-        });
-}
+Meteor.methods({
+    'abstracts.insert'(abstract) {
+        check(abstract, Object);
+
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Abstracts.insert(abstract);
+        console.log(abstract, 'abstract submited');
+    },
+});

@@ -6,7 +6,7 @@ export const Tasks = new Mongo.Collection('tasks');
 
 if (Meteor.isServer) {
     Meteor.publish('tasks', function tasksPublication() {
-        console.log(Tasks.find({}));
+        
         return Tasks.find({
             $or: [
                 { private: { $ne: true } },
@@ -17,7 +17,7 @@ if (Meteor.isServer) {
 
 }
 
-console.log(Tasks.find({}).fetch());
+// console.log(Tasks.find({}).fetch());
 
 // if (Tasks.find({}).fetch()=='') {
 //     console.log('no entry found');

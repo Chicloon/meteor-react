@@ -1,0 +1,11 @@
+.red {
+    background: red;
+}
+
+.blue {
+    background: grey;
+}
+
+#content-chars-count {
+    float: right
+}
