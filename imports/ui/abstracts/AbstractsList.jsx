@@ -10,10 +10,9 @@ class AbstractsList extends Component {
         let abstracts = this.props.abstracts;
         return abstracts.map((abstract) => {
             return (
-
                 <Abstract
                     key = {abstract._id}
-                    abstract = {abstract}
+                    abstract = {abstract.abstractBody}
                     />
             )
         });

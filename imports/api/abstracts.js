@@ -13,14 +13,19 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'abstracts.insert'(abstract) {
-        check(abstract, Object);
+    'abstracts.insert'(abstractBody) {
+        check(abstractBody, Object);
 
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Abstracts.insert(abstract);
-        console.log(abstract, 'abstract submited');
+        Abstracts.insert({
+            abstractBody,
+            username: Meteor.users.findOne(this.userId).username,
+            owner: this.userId,
+            createdAt: new Date(),
+        });
+        console.log('submited abstract ', abstractBody);
     },
 });
