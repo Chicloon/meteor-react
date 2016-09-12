@@ -13,8 +13,8 @@ class AbstractsList extends Component {
                 <Abstract
                     key = {abstract._id}
                     abstract = {abstract.abstractBody}
-                    />
-            )
+                  />
+            );
         });
     }
 

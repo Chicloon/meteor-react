@@ -13,20 +13,9 @@ if (Meteor.isServer) {
                 { owner: this.userId },
             ],
         });
-    })
+    });
 
 }
-
-// console.log(Tasks.find({}).fetch());
-
-// if (Tasks.find({}).fetch()=='') {
-//     console.log('no entry found');
-//     Tasks.insert({       
-//             createdAt: new Date(),            
-//             private: false
-//         });
-// }
-
 
 Meteor.methods({
     'tasks.insert'(text) {
@@ -51,7 +40,7 @@ Meteor.methods({
         if (task.private && task.owner !== this.userId) {
             throw new Meteor.Error('not-authorized');
         }
-        Tasks.remove(taskId)
+        Tasks.remove(taskId);
     },
     'tasks.setChecked'(taskId, setChecked) {
         check(taskId, String);
