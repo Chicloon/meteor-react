@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
 
 import SubmitForm from './SubmitForm.jsx';
 
-export default class SubmitAbstract extends Component {
+class SubmitAbstract extends Component {
 
     constructor(props) {
         super(props);
@@ -26,6 +27,14 @@ export default class SubmitAbstract extends Component {
             authors: 'test2'
         }
 
+        if (!this.props.currentUser) {
+            return (
+                <div>
+                    need to login
+                </div>
+            );
+        }
+
         return (
             <div>
                 { !this.state.formSubmitted ? 
@@ -38,3 +47,11 @@ export default class SubmitAbstract extends Component {
     }
 
 }
+
+export default createContainer(() => {
+    Meteor.subscribe('abstracts');
+
+    return {        
+        currentUser: Meteor.user(),
+    };
+}, SubmitAbstract);
