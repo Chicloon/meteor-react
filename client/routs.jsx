@@ -1,10 +1,8 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
+import '../imports/startup/accounts-config.js';
 import {MainLayout} from './layouts/MainLayout.jsx';
-// import ResolutionsWrapper from './Resolutions/ResolutionsWrapper.jsx';
-// import About from './About.jsx';
-// import ResolutionDetail from './Resolutions/ResolutionDetail.jsx';
 import App from '../imports/ui/App.jsx';
 import Home from '../imports/ui/home/Home.jsx';
 import AbstractsList from '../imports/ui/abstracts/AbstractsList.jsx';

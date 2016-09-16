@@ -27,6 +27,12 @@ class SubmitAbstract extends Component {
             authors: 'test2'
         }
 
+        if (Roles.userIsInRole(this.props.currentUser, 'admin')) {
+            console.log(this.props.currentUser);
+        }
+        else {
+            console.log('not admin');
+        }
         if (!this.props.currentUser) {
             return (
                 <div>
