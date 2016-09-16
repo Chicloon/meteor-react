@@ -16,9 +16,7 @@ export const MainLayout = (props) => (
                     <li className="nav-item">
                         <a className="nav-link" href="submit-abstract">Submit abstract </a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="app">App </a>
-                    </li>
+                    
                     <li className="nav-item">
                         <AccountsUIWrapper />
                     </li>

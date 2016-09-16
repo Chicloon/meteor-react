@@ -33,13 +33,13 @@ FlowRouter.route('/submit-abstract', {
   }
 });
 
-FlowRouter.route('/app', {
-  action() {
-    mount(MainLayout, {
-      content: (<App />)
-    });
-  }
-});
+// FlowRouter.route('/app', {
+//   action() {
+//     mount(MainLayout, {
+//       content: (<App />)
+//     });
+//   }
+// });
 
 // FlowRouter.route('/resolutions/:id', {
 //   action(params) {
