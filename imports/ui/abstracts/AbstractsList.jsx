@@ -13,6 +13,7 @@ class AbstractsList extends Component {
                 <Abstract
                     key = {abstract._id}
                     abstract = {abstract.abstractBody}
+                    user = {this.props.currentUser}
                   />
             );
         });
