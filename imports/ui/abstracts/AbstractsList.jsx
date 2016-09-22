@@ -14,6 +14,7 @@ class AbstractsList extends Component {
                     key = {abstract._id}
                     abstract = {abstract.abstractBody}
                     user = {this.props.currentUser}
+                    owner = {abstract.owner}
                   />
             );
         });
