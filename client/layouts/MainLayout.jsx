@@ -1,7 +1,5 @@
 import React from 'react';
 import AccountsUIWrapper from '../../imports/ui/AccountsUIWrapper.jsx';
-import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
 
 export const MainLayout = (props) => (
     <div className="container">
@@ -18,7 +16,7 @@ export const MainLayout = (props) => (
                     <li className="nav-item">
                         <a className="nav-link" href="submit-abstract">Submit abstract </a>
                     </li>
-
+                    
                     <li className="nav-item">
                         <AccountsUIWrapper />
                     </li>
@@ -28,9 +26,3 @@ export const MainLayout = (props) => (
         </div>
     </div>
 );
-
-// export default createContainer(() => {
-//     return {        
-//         currentUser: Meteor.user(),
-//     };
-// }, MainLayout);

@@ -33,12 +33,20 @@ export default class Abstract extends Component {
                                 <span className="label label-info">Content</span>
                                 <p>{this.props.abstract.content}</p>
                             </li>
+
                             {this.props.user ? <AbstractButtons 
                                 key= {this.props.user._id}
                                 user = {this.props.user}
                                 owner = {this.props.owner}
                                 />                                
                                 : '' }                                
+
+                            {this.props.user && this.props.user._id == this.props.owner || Roles.userIsInRole(this.props.user, 'admin') ?  
+                                <div>
+                                    <a href="#" style={{float: 'left', margin: '10px'}} className="btn btn-warning"> Edit </a>
+                                    <a href="#" style={{float: 'right', margin: '10px'}} className = "btn btn-danger"> Delete </a>
+                                </div> 
+                             : '' }
                         </ul>
                     </div>
                 </div>                
