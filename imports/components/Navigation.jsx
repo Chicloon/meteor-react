@@ -1,6 +1,7 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.jsx';
+import { createContainer } from 'meteor/react-meteor-data';
 
 export const Navigation = () => (
     <nav>
@@ -21,3 +22,10 @@ export const Navigation = () => (
         </ul>
     </nav>
 ) 
+
+export default createContainer(() => {
+    
+    return {    
+        currentUser: Meteor.user(),
+    };
+}, Navigation);
