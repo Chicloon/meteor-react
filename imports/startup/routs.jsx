@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import './accounts-config.js';
 
 import { MainLayout } from '../layouts/MainLayout.jsx';
 import  Home  from '../ui/home/Home.jsx';
