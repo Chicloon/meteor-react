@@ -7,6 +7,7 @@ import App from '../imports/ui/App.jsx';
 import Home from '../imports/ui/home/Home.jsx';
 import AbstractsList from '../imports/ui/abstracts/AbstractsList.jsx';
 import SubmitAbstract from '../imports/ui/abstracts/SubmitAbstract.jsx';
+import MyAbstracts from '../imports/ui/abstracts/MyAbstracts.jsx';
 
 FlowRouter.route('/', {
     name: 'MainApp',
@@ -29,6 +30,16 @@ FlowRouter.route('/submit-abstract', {
   action() {
     mount(MainLayout, {
       content: (<SubmitAbstract />)
+    });
+  }
+});
+
+
+FlowRouter.route('/my-abstracts', {
+  action() {
+    mount(MainLayout, {
+      content: (<MyAbstracts />)
+
     });
   }
 });
