@@ -8,13 +8,17 @@ import Abstract from './Abstract.jsx';
 class AbstractsList extends Component {
     renderAbstracts() {
         let abstracts = this.props.abstracts;
+        if (this.props.userAbstracts) {
+            console.log('got data from MyAbstracts');
+            abstracts = this.props.userAbstracts
+        }
         return abstracts.map((abstract) => {
             return (
                 <Abstract
                     key = {abstract._id}
-                    abstract = {abstract.abstractBody}
+                    abstract = {abstract}
                     user = {this.props.currentUser}
-                    owner = {abstract.owner}
+                    owner = {abstract}
                   />
             );
         });

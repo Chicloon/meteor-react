@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
+
+import Navigation from '../components/Navigation.jsx';
 
 
-import { Navigation } from '../components/Navigation.jsx';
+export default class MainLayout extends Component {
+    
+    render() {        
+        return (
+            <div className="container">
+                <Navigation />
+                {this.props.children}
+            </div>
+        );
+    }
+}
 
-export const MainLayout = ({ children }) => (
-    <div className="container">
-        <div className="masthead">
-            <h3 className="text-muted">Conference title</h3>
-            <Navigation />
-            { children }
-        </div>
-    </div>
-);
+// export default createContainer(() => {
+//     return {
+//         currentUser: Meteor.user(),
+//     };
+// }, MainLayout);
+
