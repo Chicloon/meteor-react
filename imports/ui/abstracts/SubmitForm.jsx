@@ -48,6 +48,25 @@ export default class SubmitForm extends Component {
         ReactDOM.findDOMNode(this.refs.contentCharsValue).innerText = 'You have entered ' + charsCount + ' chars';
     }
 
+    getFormContent(field) {
+        if (!this.props.abstract) {
+            return (
+                console.log('no data found'),
+                null                
+            );           
+        }
+
+        if (this.props.abstract[field]) {
+                return this.props.abstract[field]
+            }
+        console.log('wrong field name');
+    }
+
+    cancelEdit () {
+        console.log('cancel');
+        this.props.onEdit(false);
+    }
+
     render() {
         let charsCount = this.state.contentCharsValue;
 
@@ -55,10 +74,11 @@ export default class SubmitForm extends Component {
             red: charsCount => 100,
             blue: charsCount < 10,
         });
+        
+        console.log('props', this.props);
 
         return (
-            <div className="container">
-                <h1>Abstract submission form</h1>
+
                 <form autoComplete="off" onSubmit = {this.handleSubmit.bind(this) } className="new-task">
                     <div className="form-group">
                         <label htmlFor="title">Title </label>
@@ -68,12 +88,8 @@ export default class SubmitForm extends Component {
                             id="title"
                             type="text"
                             required
-                            ref = "title"
-                            
-                            defaultValue = {
-                                this.props.inputvalue ?
-                                this.props.inputvalue.authors : '' 
-                            }
+                            ref = "title"                            
+                            defaultValue = {this.getFormContent('title')}
                             />
                         <span> Minimum 10 characters</span>
                     </div>
@@ -87,6 +103,7 @@ export default class SubmitForm extends Component {
                             type="text"
                             required
                             ref = "authors"
+                            defaultValue = {this.getFormContent('authors')}
                             />
                         <span> Minimum 10 characters</span>
                     </div>
@@ -97,6 +114,7 @@ export default class SubmitForm extends Component {
                             id="section"
                             required
                             ref = "section"
+                            defaultValue = {this.getFormContent('section')}
                             >
                             <option>Biology</option>
                             <option>Math</option>
@@ -112,6 +130,7 @@ export default class SubmitForm extends Component {
                             maxLength = "500"
                             rows="5"
                             required
+                            defaultValue = {this.getFormContent('content')}
                             onChange={this.contentfieldChange.bind(this) }
                             >
                         </textarea>
@@ -121,10 +140,13 @@ export default class SubmitForm extends Component {
                     { !this.state.formValid ? <p> Please fill form correctly </p>
                         : ''
                     }
-
+                    { this.props.abstract ? <div>
+                            <button style={{margin: '0 10px 0 0'}} type="submit" className="btn btn-primary"> Save changes </button>
+                            <button onClick={this.cancelEdit.bind(this)} type="button" className="btn btn-default"> Cancel </button>
+                        </div> :
                     <button type="submit" className="btn btn-primary"> Submit abstract </button>
-                </form>
-            </div>
+                    }
+                </form>            
         );
     }
 

@@ -45,7 +45,7 @@ class SubmitAbstract extends Component {
             <div>
                 { !this.state.formSubmitted ? 
                     <SubmitForm submit={this.handleUserInput.bind(this) } />
-                    : <div className="alert alert-success"> Your form was submitted </div>
+                    : <div className="alert alert-success"> Your abstract was submitted </div>
 
                 }
             </div>

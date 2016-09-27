@@ -3,20 +3,48 @@ import { Meteor } from 'meteor/meteor';
 
 import { Abstracts } from '../../api/abstracts.js';
 import AbstractButtons from './AbstractButtons.jsx';
+import SubmitForm from './SubmitForm.jsx';
 
 export default class Abstract extends Component {
+
+     constructor(props) {
+        super(props);
+
+        this.state = {
+            edit: false,
+        }
+    }
+
     componentDidMount() {
         if (Roles.userIsInRole(this.props.user, 'admin')) {
             console.log('welcome admin');
         }        
     }
 
-    render() {        
+    onEdit(status) {
+        this.setState({edit: status})
+        
+    }
+
+    render() {
+        if (this.state.edit) {
+            return (
+                <div className="panel panel-default">
+                    <div className="panel-body">
+                        <SubmitForm
+                            key={this.props.abstract._id}
+                            abstract = {this.props.abstract.abstractBody}
+                            onEdit={this.onEdit.bind(this)}
+                        />
+                    </div>
+                </div>
+            );
+        }        
         return (
             <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.title}</h3>
+                        <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}</h3>
                     </div>
                     <div className="panel-body">
                         <ul className="list-group">                            
@@ -38,6 +66,7 @@ export default class Abstract extends Component {
                                 user = {this.props.user}
                                 abstract = {this.props.abstract}
                                 showButtons = {this.props.showButtons}
+                                onEdit={this.onEdit.bind(this)}
                                 />                                
                                 : '' }                              
 

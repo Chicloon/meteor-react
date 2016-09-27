@@ -38,7 +38,7 @@ Meteor.methods({
             // throw new Meteor.Error('not-authorized');
         }
         
-        // Abstracts.delete
-        console.log('abstractId', abstractId);
+        Abstracts.remove(abstractId);
+        console.log('abstract ' + abstract.abstractBody.title + ' removed');
     },
 });
