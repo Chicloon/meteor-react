@@ -7,39 +7,57 @@ import SubmitForm from './SubmitForm.jsx';
 
 export default class Abstract extends Component {
 
-     constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
             edit: false,
         }
+        
     }
 
     componentDidMount() {
         if (Roles.userIsInRole(this.props.user, 'admin')) {
             console.log('welcome admin');
-        }        
+        }
+
+        // $("#success-alert").hide();
     }
 
     onEdit(status) {
-        this.setState({edit: status})
-        
+        this.setState({ edit: status })
+
+    }
+
+    updateAbstract(abstract) {
+        Meteor.call('abstracts.update', abstract);
+        console.log($('#success-alert'));
+        console.log($('.alert'));
+        console.log($('.panel'));
+
+        $("#success-alert").fadeTo(2000, 500).slideUp(500);
+        $("#success-alert").alert();
+        // $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+        //     $("#success-alert").slideUp(500);
+        // });
+        this.setState({ edit: false });
     }
 
     render() {
         if (this.state.edit) {
             return (
-                <div className="panel panel-default">
+                <div className="panel panel-default" >
                     <div className="panel-body">
                         <SubmitForm
                             key={this.props.abstract._id}
                             abstract = {this.props.abstract.abstractBody}
-                            onEdit={this.onEdit.bind(this)}
-                        />
+                            onEdit={this.onEdit.bind(this) }
+                            submit = {this.updateAbstract.bind(this) }
+                            />
                     </div>
                 </div>
             );
-        }        
+        }
         return (
             <div>
                 <div className="panel panel-default">
@@ -47,7 +65,7 @@ export default class Abstract extends Component {
                         <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}</h3>
                     </div>
                     <div className="panel-body">
-                        <ul className="list-group">                            
+                        <ul className="list-group">
                             <li className="list-group-item">
                                 <span className="label label-info">Authors</span>
                                 <h4>{this.props.abstract.abstractBody.authors} </h4>
@@ -61,18 +79,19 @@ export default class Abstract extends Component {
                                 <p>{this.props.abstract.abstractBody.content}</p>
                             </li>
 
-                            {this.props.user ? <AbstractButtons 
+                            {this.props.user ? <AbstractButtons
                                 key= {this.props.user._id}
                                 user = {this.props.user}
                                 abstract = {this.props.abstract}
                                 showButtons = {this.props.showButtons}
-                                onEdit={this.onEdit.bind(this)}
-                                />                                
-                                : '' }                              
+                                onEdit={this.onEdit.bind(this) }
+                                />
+                                : '' }
 
+                            
                         </ul>
                     </div>
-                </div>                
+                </div>
             </div>
         );
     }
