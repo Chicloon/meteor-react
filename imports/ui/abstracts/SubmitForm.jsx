@@ -61,8 +61,7 @@ export default class SubmitForm extends Component {
 
     getFormContent(field) {
         if (!this.props.abstract) {
-            return (
-                console.log('no data found'),
+            return (                
                 null                
             );           
         }
