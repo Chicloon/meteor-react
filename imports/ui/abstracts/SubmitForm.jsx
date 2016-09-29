@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
 import classnames from 'classnames';
+import SubmitButtons from './SubmitButtons.jsx';
 
 
 export default class SubmitForm extends Component {
@@ -11,12 +12,21 @@ export default class SubmitForm extends Component {
         super(props);
 
         this.state = {            
-            formValid: true,           
+            formValid: true,
+            status: false,           
+        }
+    }
+
+    componentWillMount() {
+        if (this.props.abstract) {
+            this.setState({status: 'update'});
         }
     }
 
     handleSubmit(event) {
         event.preventDefault();
+
+        console.log('form submitted');
 
         let title = ReactDOM.findDOMNode(this.refs.title).value;
         let authors = ReactDOM.findDOMNode(this.refs.authors).value;
@@ -35,7 +45,8 @@ export default class SubmitForm extends Component {
                 section: section,
                 content: content,                
             }
-            this.props.submit(abstract);
+            // this.props.submit(abstract);
+            this.props.submit(abstract, this.state.status);
             
         } else {
             console.log('form invalid');
@@ -62,6 +73,11 @@ export default class SubmitForm extends Component {
         console.log('wrong field name');
     }
 
+    checkAbstract() {
+        
+                 
+    }
+
     cancelEdit () {
         console.log('cancel');
         this.props.onEdit(false);
@@ -79,7 +95,7 @@ export default class SubmitForm extends Component {
 
         return (
 
-                <form autoComplete="off" onSubmit = {this.handleSubmit.bind(this) } className="new-task">
+                <form autoComplete="off" ref="submitAbstractFrom" onSubmit = {this.handleSubmit.bind(this) } className="new-task">
                     <div className="form-group">
                         <label htmlFor="title">Title </label>
                         <input
@@ -140,12 +156,11 @@ export default class SubmitForm extends Component {
                     { !this.state.formValid ? <p> Please fill form correctly </p>
                         : ''
                     }
-                    { this.props.abstract ? <div>
-                            <button style={{margin: '0 10px 0 0'}} type="submit" className="btn btn-primary"> Save changes </button>
-                            <button onClick={this.cancelEdit.bind(this)} type="button" className="btn btn-default"> Cancel </button>
-                        </div> :
-                    <button type="submit" className="btn btn-primary"> Submit abstract </button>
-                    }
+                    <SubmitButtons                        
+                        abstract = { this.state.status}
+                        cancelEdit = {this.cancelEdit.bind(this)}                        
+                    />
+                    
                 </form>            
         );
     }

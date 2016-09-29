@@ -15,18 +15,15 @@ class SubmitAbstract extends Component {
         }
     }
 
-    handleUserInput(abstract) {        
+    handleUserInput(abstract, status) {        
         Meteor.call('abstracts.insert', abstract);
+        console.log('status', status );
         this.setState({ formSubmitted: true });
     }
 
     render() {
 
-        let inputvalue = {
-            content: 'test',
-            authors: 'test2'
-        }
-
+     
         if (Roles.userIsInRole(this.props.currentUser, 'admin')) {
             console.log(this.props.currentUser);
         }

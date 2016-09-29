@@ -12,34 +12,22 @@ export default class Abstract extends Component {
 
         this.state = {
             edit: false,
-        }
-        
+        }        
     }
 
     componentDidMount() {
         if (Roles.userIsInRole(this.props.user, 'admin')) {
             console.log('welcome admin');
         }
-
-        // $("#success-alert").hide();
     }
 
     onEdit(status) {
         this.setState({ edit: status })
-
     }
 
     updateAbstract(abstract) {
         Meteor.call('abstracts.update', abstract);
-        console.log($('#success-alert'));
-        console.log($('.alert'));
-        console.log($('.panel'));
-
-        $("#success-alert").fadeTo(2000, 500).slideUp(500);
-        $("#success-alert").alert();
-        // $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
-        //     $("#success-alert").slideUp(500);
-        // });
+        console.log('form updated');
         this.setState({ edit: false });
     }
 
