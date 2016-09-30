@@ -8,6 +8,8 @@ import  Home  from '../ui/home/Home.jsx';
 import  AbstractsList  from '../ui/abstracts/AbstractsList.jsx';
 import  SubmitAbstract  from '../ui/abstracts/SubmitAbstract.jsx';
 import  MyAbstracts  from '../ui/abstracts/MyAbstracts.jsx';
+import  UserAbstracts  from '../ui/abstracts/UserAbstracts.jsx';
+
 import  AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
 
 Meteor.startup( ()=> {
@@ -18,6 +20,7 @@ Meteor.startup( ()=> {
                 <Route path="/abstracts" component={ AbstractsList } />
                 <Route path="/submit-abstract" component={ SubmitAbstract } />                
                 <Route path="/my-abstracts" component={ MyAbstracts } />
+                <Route path="/user-abstracts" component={ UserAbstracts } />
             </Route>
         </Router>, 
        document.getElementById( 'react-root' ) 

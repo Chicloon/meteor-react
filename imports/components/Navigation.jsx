@@ -4,8 +4,10 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.jsx';
+import UserNavs from './UserNavs.jsx';
 
-class Navigation extends Component {
+export default class Navigation extends Component {
+
     render(){
         return (
             <nav>                
@@ -19,11 +21,10 @@ class Navigation extends Component {
                     <li className="nav-item">
                     <Link to="submit-abstract" activeClassName="active"> Submit abstract</Link>                
                     </li>
-                                        
-                    { this.props.currentUser ?
-                        <li className="nav-item">
-                            <Link to="my-abstracts" activeClassName="active"> My abstracts</Link>
-                        </li> : '' }
+                    <UserNavs
+                        user = {this.props.user} 
+                        />
+                    
                     <li className="nav-item">
                         <AccountsUIWrapper />
                     </li>
@@ -33,11 +34,7 @@ class Navigation extends Component {
     } 
 } 
 
-export default createContainer(() => {
-    return {
-        currentUser: Meteor.user(),
-    };
-}, Navigation);
+
 
 
 
