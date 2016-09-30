@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Modal from 'react-modal';
 
 import { Abstacts } from '../../api/abstracts.js';
@@ -27,7 +28,7 @@ export default class AbstractButtons extends Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed. 
-        this.refs.subtitle.style.color = '#f00';
+        // this.refs.subtitle.style.color = '#f00';
     }
 
     closeModal() {
@@ -50,24 +51,35 @@ export default class AbstractButtons extends Component {
         Meteor.call('abstracts.delete', this.props.abstract._id);
     }
 
+    updateAbstract(abstract) {
+        Meteor.call('abstracts.update', abstract);
+        console.log('form updated');        
+        this.closeModal();
+        this.setState({ successModal: true });
+        setTimeout(() => {
+            this.setState({ successModal: false });
+        }, 1000);
+
+        // this.setState({ edit: false });
+    }
+
     render() {
+
+        console.log('props', this.props);
         let buttonsStyle = {
             margin: '5px 10px 0 10px'
         };
         // console.log(this.props);
 
-        // Styles for modal window, not used
-        const modalStyles = {
+        // Styles for modal window
+        const modalStyles = {          
             content: {
                 top: '10%',
-                left: '10%',
-                right: 'auto',
+                left: '5%',                
                 bottom: 'auto',
-                marginRight: '-50%',
-                // transform: 'translate(-50%, -50%)'
             },
-            overlay: {
-                backgroundColor: 'red'
+            overlay: { //styles for overlay
+            
             }
         };
         return (
@@ -75,7 +87,7 @@ export default class AbstractButtons extends Component {
                 { Roles.userIsInRole(this.props.user, 'admin') || this.props.showButtons ?
                     <div>
                         { Roles.userIsInRole(this.props.user, 'admin') ? <button style={buttonsStyle} className = "btn btn-success"> Accept </button> : ''}
-                        <button onClick={this.editAbstract.bind(this) } style={buttonsStyle} className = "btn btn-warning"> Edit </button>
+                        <button onClick={this.openModal.bind(this) } style={buttonsStyle} className = "btn btn-warning"> Edit </button>
                         <button onClick={this.deleteAbstract.bind(this) } style={buttonsStyle} className = "btn btn-danger"> Delete </button>
                     </div> : ''}
                 {this.state.abstractEdited ?
@@ -86,32 +98,38 @@ export default class AbstractButtons extends Component {
                     </div>
                     : ''
                 }
-                {this.state.editToggle ? <SubmitForm />
-                    :
-                    <div>
-                        <button type="button" className="btn btn-warning" onClick={this.openModal.bind(this)}>Open Modal</button>
+                    
                         <Modal
                             isOpen={this.state.modalIsOpen}
                             onAfterOpen={this.afterOpenModal.bind(this)}
                             onRequestClose={this.closeModal.bind(this)}
-                                                     
+                            style = {modalStyles}
+                            
                             >
-
-                            <h2 ref="subtitle">Hello</h2>
-                            <button onClick={this.closeModal.bind(this)}>close</button>
-                            <div>I am a modal</div>
-                            <form>
-                                <input />
-                                <button>tab navigation</button>
-                                <button>stays</button>
-                                <button>inside</button>
-                                <button>the modal</button>
-                            </form>
+                            <SubmitForm
+                                key={this.props.abstract._id}
+                                abstract = {this.props.abstract.abstractBody}
+                                onEdit={true}
+                                closeModal = {this.closeModal.bind(this)}
+                                submit = {this.updateAbstract.bind(this) }
+                            />
                         </Modal>
-                    </div>
-                }
-            </div>
 
+                        <Modal
+                            isOpen={this.state.successModal}
+                            onAfterOpen={this.afterOpenModal.bind(this)}                            
+                            style = {modalStyles}
+                            >
+                             <div className="alert alert-success" id="success-alert" ref="successAlert" >
+                                <button type="button" className="close" data-dismiss="alert">x</button>
+                                <strong>Success! </strong>
+                                Product have added to your wishlist.
+                            </div>
+                            
+                        </Modal>
+
+                  
+            </div>
         );
     }
 }

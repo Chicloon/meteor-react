@@ -21,31 +21,8 @@ export default class Abstract extends Component {
         }
     }
 
-    onEdit(status) {
-        this.setState({ edit: status })
-    }
-
-    updateAbstract(abstract) {
-        Meteor.call('abstracts.update', abstract);
-        console.log('form updated');
-        this.setState({ edit: false });
-    }
-
     render() {
-        if (this.state.edit) {
-            return (
-                <div className="panel panel-default" >
-                    <div className="panel-body">
-                        <SubmitForm
-                            key={this.props.abstract._id}
-                            abstract = {this.props.abstract.abstractBody}
-                            onEdit={this.onEdit.bind(this) }
-                            submit = {this.updateAbstract.bind(this) }
-                            />
-                    </div>
-                </div>
-            );
-        }
+      
         return (
             <div>
                 <div className="panel panel-default">
@@ -67,16 +44,14 @@ export default class Abstract extends Component {
                                 <p>{this.props.abstract.abstractBody.content}</p>
                             </li>
 
-                            {this.props.user ? <AbstractButtons
+                            {this.props.user ? 
+                                <AbstractButtons
                                 key= {this.props.user._id}
                                 user = {this.props.user}
                                 abstract = {this.props.abstract}
                                 showButtons = {this.props.showButtons}
-                                onEdit={this.onEdit.bind(this) }
                                 />
                                 : '' }
-
-                            
                         </ul>
                     </div>
                 </div>

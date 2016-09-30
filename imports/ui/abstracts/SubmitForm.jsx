@@ -12,8 +12,7 @@ export default class SubmitForm extends Component {
         super(props);
 
         this.state = {            
-            formValid: true,
-            status: false,           
+            formValid: true,                       
         }
     }
 
@@ -45,9 +44,7 @@ export default class SubmitForm extends Component {
                 section: section,
                 content: content,                
             }
-            // this.props.submit(abstract);
-            this.props.submit(abstract, this.state.status);
-            
+            this.props.submit(abstract);            
         } else {
             console.log('form invalid');
             this.setState({ formValid: false });
@@ -72,14 +69,9 @@ export default class SubmitForm extends Component {
         console.log('wrong field name');
     }
 
-    checkAbstract() {
-        
-                 
-    }
-
     cancelEdit () {
         console.log('cancel');
-        this.props.onEdit(false);
+        this.props.closeModal();
     }
 
     render() {

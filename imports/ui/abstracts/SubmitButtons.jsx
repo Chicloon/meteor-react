@@ -6,9 +6,7 @@ export default class SubmitButtons extends Component {
 
 
     cancelEdit () {
-        console.log('cancel');
-        console.log('parent',this.props.parent);
-        console.log(ReactDOM.findDOMNode(this.refs.submitAbstractFrom));
+        console.log('cancel');        
         this.props.cancelEdit();
     }
 
