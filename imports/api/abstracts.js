@@ -41,7 +41,9 @@ Meteor.methods({
         Abstracts.remove(abstractId);
         console.log('abstract ' + abstract.abstractBody.title + ' removed');
     },
-    'abstracts.update'(abstract) {
+    'abstracts.update'(abstract, id) {
+        Abstracts.update(id,  {$set:{abstractBody : abstract }});
         console.log(abstract);
+        console.log(id);
     }
 });

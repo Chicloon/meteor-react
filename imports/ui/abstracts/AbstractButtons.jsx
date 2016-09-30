@@ -52,13 +52,13 @@ export default class AbstractButtons extends Component {
     }
 
     updateAbstract(abstract) {
-        Meteor.call('abstracts.update', abstract);
+        Meteor.call('abstracts.update', abstract, this.props.abstract._id);
         console.log('form updated');        
         this.closeModal();
         this.setState({ successModal: true });
         setTimeout(() => {
             this.setState({ successModal: false });
-        }, 1000);
+        }, 1500);
 
         // this.setState({ edit: false });
     }
@@ -122,8 +122,7 @@ export default class AbstractButtons extends Component {
                             >
                              <div className="alert alert-success" id="success-alert" ref="successAlert" >
                                 <button type="button" className="close" data-dismiss="alert">x</button>
-                                <strong>Success! </strong>
-                                Product have added to your wishlist.
+                                <strong>Success! </strong>                                
                             </div>
                             
                         </Modal>
