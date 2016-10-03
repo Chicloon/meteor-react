@@ -7,6 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Modal from 'react-modal';
 
 import { Abstacts } from '../../api/abstracts.js';
+// import '../../api/emails.js';
 import SubmitForm from './SubmitForm.jsx';
 
 
@@ -90,6 +91,15 @@ export default class AbstractButtons extends Component {
         }
     }
 
+    sendEmail() {
+        Meteor.call('testMail', 'test');
+        // Meteor.call('sendEmail',
+        //     'chicloon@gmail.com',
+        //     'bob@example.com',
+        //     'Hello from Meteor!',
+        //     'This is a test of Email.send.');
+    }
+
     render() {
 
         console.log('props', this.props);
@@ -115,6 +125,7 @@ export default class AbstractButtons extends Component {
                         { this.buttonAccept() }
                         <button onClick={this.openModal.bind(this) } style={buttonsStyle} className = "btn btn-warning"> Edit </button>
                         <button onClick={this.deleteAbstract.bind(this) } style={buttonsStyle} className = "btn btn-danger"> Delete </button>
+                        <button onClick={this.sendEmail.bind(this) } style={buttonsStyle} className = "btn"> Send Email </button>
                     </div> : ''}
 
                 <Modal
