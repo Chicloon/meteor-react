@@ -24,7 +24,7 @@ class MyAbstracts extends Component {
     }
 
     render() {
-        
+        Session.set('Meteor.loginButtons.dropdownVisible',false);
         if (!Roles.userIsInRole(this.props.currentUser, 'admin')) {
             return (
                 <h1> You need to be admin to access this page </h1>

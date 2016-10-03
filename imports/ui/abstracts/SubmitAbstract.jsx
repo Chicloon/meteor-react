@@ -22,7 +22,7 @@ class SubmitAbstract extends Component {
     }
 
     render() {
-
+        Session.set('Meteor.loginButtons.dropdownVisible',false);
      
         if (Roles.userIsInRole(this.props.currentUser, 'admin')) {
             console.log(this.props.currentUser);

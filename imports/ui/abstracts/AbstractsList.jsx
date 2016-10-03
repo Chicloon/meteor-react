@@ -26,6 +26,7 @@ class AbstractsList extends Component {
     }
 
     render() {
+        Session.set('Meteor.loginButtons.dropdownVisible',false);
         return (
             <div className="container">
                 <h2> Accepted abstracts at the moment </h2>

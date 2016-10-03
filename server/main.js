@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import '../imports/api/abstracts.js';
-import './emails.js';
+import '../imports/api/emails.js';
 import '../imports/startup/server/mail-url.js';
 import { Accounts } from 'meteor/accounts-base'
 
@@ -16,13 +16,5 @@ Meteor.startup(() => {
     });
     Roles.addUsersToRoles(Accounts.findUserByUsername('admin'), 'admin', Roles.GLOBAL_GROUP);
     console.log('admin created');
-  }
-  console.log('server started');
-  // Email.send({
-  //   to: "chicloon@gmail.com",
-  //   from: "from.address@email.com",
-  //   subject: "Example Email",
-  //   html: "<p><strong>This will render as bold text</strong>, but this will not.</p>",
-  // });
-  // console.log('email send');
+  }  
 });

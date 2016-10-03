@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-// import { Email } from 'meteor/email';
+import { Email } from 'meteor/email';
 
 
 
@@ -25,11 +25,10 @@ Meteor.methods({
 
         Email.send({
             to: "chicloon@gmail.com",
-            from: "from.address@email.com",
+            from: "chicloon@rambler.ru",
             subject: "Example Email",
             html: "<p><strong>This will render as bold text</strong>, but this will not.</p>",
         });
-
         console.log('email send');
     }
 

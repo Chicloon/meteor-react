@@ -24,7 +24,7 @@ class MyAbstracts extends Component {
     }
 
     render() {
-        
+        Session.set('Meteor.loginButtons.dropdownVisible',false);
         if (!this.props.currentUser) {
             return (
                 <h1> You need to be logged in </h1>
