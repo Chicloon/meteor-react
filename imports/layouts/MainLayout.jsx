@@ -6,20 +6,22 @@ import Navigation from '../components/Navigation.jsx';
 
 
 export default class MainLayout extends Component {
-    
-    render() {        
+
+    render() {
         return (
-            <div className="container">
-                <Navigation />
-                {this.props.children}
+            <div>
+                <div className="jumbotron">
+                    <div className="container">
+                        <h1 className="display-3">Conference title</h1>
+                    </div>
+                </div>
+
+                <div className="container">
+                    <Navigation />
+                    {this.props.children}
+                </div>
             </div>
         );
     }
 }
-
-// export default createContainer(() => {
-//     return {
-//         currentUser: Meteor.user(),
-//     };
-// }, MainLayout);
 
