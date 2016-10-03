@@ -12,13 +12,8 @@ export default class Abstract extends Component {
 
         this.state = {
             edit: false,
-        }        
-    }
 
-    componentDidMount() {
-        if (Roles.userIsInRole(this.props.user, 'admin')) {
-            console.log('welcome admin');
-        }
+        }        
     }
 
     titleRender() {
@@ -28,7 +23,7 @@ export default class Abstract extends Component {
             );
         }
         return (
-            <span style={{float: 'right'}} className = "label label-danger" > Not accepted </span>
+                <span style={{float: 'right'}} className = "label label-danger" > Not accepted </span>
             );
     }
 
@@ -38,6 +33,7 @@ export default class Abstract extends Component {
             <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
+                        {Roles.userIsInRole(this.props.user, 'admin') ? <h3> <span> User: </span> {this.props.abstract.username} </h3> : ''}
                         <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}
                         {this.props.forAllUsers ? '' : this.titleRender()
                         }
