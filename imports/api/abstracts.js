@@ -24,6 +24,7 @@ Meteor.methods({
             abstractBody,
             username: Meteor.users.findOne(this.userId).username,
             owner: this.userId,
+            accepted: false,
             createdAt: new Date(),
         });
         console.log('submited abstract ', abstractBody);
@@ -35,15 +36,38 @@ Meteor.methods({
         
         if (abstract.owner != this.userId && !Roles.userIsInRole(this.userId, 'admin')) {
             console.log('access denied');
-            // throw new Meteor.Error('not-authorized');
+            throw new Meteor.Error('not-authorized');
         }
         
         Abstracts.remove(abstractId);
         console.log('abstract ' + abstract.abstractBody.title + ' removed');
     },
-    'abstracts.update'(abstract, id) {
-        Abstracts.update(id,  {$set:{abstractBody : abstract }});
-        console.log(abstract);
-        console.log(id);
+    'abstracts.update'(abstract, abstractId) {
+        check (abstractId, String);
+        check (abstract, Object);
+        const abstractOwner = Abstracts.findOne(abstractId).owner;
+        
+        if (abstractOwner != this.userId && !Roles.userIsInRole(this.userId, 'admin')) {
+            console.log('access denied');
+            throw new Meteor.Error('not-authorized');
+        }
+        Abstracts.update(abstractId,  {$set:{abstractBody : abstract }});
+        console.log('abstract ' + abstract.title + ' updated');        
+    },
+    'abstracts.accept'(abstractId) {
+        check(abstractId, String);
+        if (!Roles.userIsInRole(this.userId, 'admin')) {
+            throw new Meteor.Error('access denied, not admin');
+        }
+        Abstracts.update(abstractId,  {$set:{accepted : true }});
+        console.log('Abstract accepted');
+    },
+    'abstracts.reject'(abstractId) {
+        check(abstractId, String);
+        if (!Roles.userIsInRole(this.userId, 'admin')) {
+            throw new Meteor.Error('access denied, not admin');
+        }
+        Abstracts.update(abstractId,  {$set:{accepted : false }});
+        console.log('Abstract rejected');
     }
 });

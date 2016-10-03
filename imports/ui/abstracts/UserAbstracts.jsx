@@ -25,9 +25,9 @@ class MyAbstracts extends Component {
 
     render() {
         
-        if (!this.props.currentUser) {
+        if (!Roles.userIsInRole(this.props.currentUser, 'admin')) {
             return (
-                <h1> You need to be logged in </h1>
+                <h1> You need to be admin to access this page </h1>
             );
         }
         return(

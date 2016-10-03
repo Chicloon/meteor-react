@@ -19,6 +19,7 @@ class AbstractsList extends Component {
                     abstract = {abstract}
                     user = {this.props.currentUser}
                     owner = {abstract}
+                    forAllUsers = {true}
                   />
             );
         });
@@ -27,7 +28,7 @@ class AbstractsList extends Component {
     render() {
         return (
             <div className="container">
-                <h2> Submitted abstracts at the moment </h2>
+                <h2> Accepted abstracts at the moment </h2>
                 <div>
                     {this.renderAbstracts() }
                 </div>
@@ -46,7 +47,7 @@ export default createContainer(() => {
     Meteor.subscribe('abstracts');
 
     return {
-        abstracts: Abstracts.find({}).fetch(),
+        abstracts: Abstracts.find({accepted: true}).fetch(),
         currentUser: Meteor.user(),
     };
 }, AbstractsList);

@@ -21,13 +21,27 @@ export default class Abstract extends Component {
         }
     }
 
+    titleRender() {
+        if(this.props.abstract.accepted) {
+            return (
+                <span style={{float: 'right'}} className = "label label-success" > Accepted </span>
+            );
+        }
+        return (
+            <span style={{float: 'right'}} className = "label label-danger" > Not accepted </span>
+            );
+    }
+
     render() {
       
         return (
             <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}</h3>
+                        <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}
+                        {this.props.forAllUsers ? '' : this.titleRender()
+                        }
+                        </h3>
                     </div>
                     <div className="panel-body">
                         <ul className="list-group">
@@ -50,6 +64,7 @@ export default class Abstract extends Component {
                                 user = {this.props.user}
                                 abstract = {this.props.abstract}
                                 showButtons = {this.props.showButtons}
+                                accepted={this.props.abstract.accepted}
                                 />
                                 : '' }
                         </ul>
