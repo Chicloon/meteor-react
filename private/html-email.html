@@ -7,26 +7,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/EmailMessage">
-  <table>
-    <tr>
-      <td></td>
-      <td width="600">
-        <table width="100%" style="border: 1px solid #eee;">
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Name</th>
-            <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{name}}</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Favorite Restaurant</th>
-            <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{favoriteRestaurant}}</td>
-          </tr>
-          <tr>
-            <th style="text-align: left; padding: 10px; border-right: 1px solid #eee;">Best Friend</th>
-            <td style="text-align: left; padding: 10px;">{{bestFriend}}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+  <p> Dear, <em> {{abstract.authors}} </em> </p> 
+  <p> Your abstract titled <strong> {{abstract.title}} </strong> approved !!! </p>
+  <h5> Section: </h5>
+  <p> {{abstract.section}} </p>   
+  <h5> Abstract content: </h5>
+  <p> {{abstract.content}} </p>
+
+  <p> Best regards, the conference administration </p>
+  
 </body>
 </html>

@@ -46,6 +46,10 @@ export default class Abstract extends Component {
                                 <h4>{this.props.abstract.abstractBody.authors} </h4>
                             </li>
                             <li className="list-group-item">
+                                <span className="label label-info">Contact e-mail</span>
+                                <h5>{this.props.abstract.abstractBody.email}</h5>
+                            </li>
+                            <li className="list-group-item">
                                 <span className="label label-info">Seciton</span>
                                 <h5>{this.props.abstract.abstractBody.section}</h5>
                             </li>

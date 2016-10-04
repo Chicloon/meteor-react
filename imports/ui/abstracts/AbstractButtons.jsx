@@ -92,12 +92,14 @@ export default class AbstractButtons extends Component {
     }
 
     sendEmail() {
-        Meteor.call('testMail', 'test');
-        // Meteor.call('sendEmail',
-        //     'chicloon@gmail.com',
-        //     'bob@example.com',
-        //     'Hello from Meteor!',
-        //     'This is a test of Email.send.');
+        const email = {
+            to: this.props.abstract.abstractBody.email,
+            subject: 'Test mail',
+            text: 'test message'
+        };
+
+        Meteor.call('sendEmail', email, this.props.abstract.abstractBody);
+        console.log('email send');   
     }
 
     render() {
@@ -125,7 +127,7 @@ export default class AbstractButtons extends Component {
                         { this.buttonAccept() }
                         <button onClick={this.openModal.bind(this) } style={buttonsStyle} className = "btn btn-warning"> Edit </button>
                         <button onClick={this.deleteAbstract.bind(this) } style={buttonsStyle} className = "btn btn-danger"> Delete </button>
-                        <button onClick={this.sendEmail.bind(this) } style={buttonsStyle} className = "btn"> Send Email </button>
+                        {this.props.abstract.accepted ? <button onClick={this.sendEmail.bind(this) } style={buttonsStyle} className = "btn btn-success"> Send Confirmation Email </button> : '' }
                     </div> : ''}
 
                 <Modal
