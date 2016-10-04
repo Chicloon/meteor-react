@@ -99,6 +99,7 @@ export default class AbstractButtons extends Component {
         };
 
         Meteor.call('sendEmail', email, this.props.abstract.abstractBody);
+        this.succesToggle();
         console.log('email send');   
     }
 
