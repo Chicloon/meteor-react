@@ -11,9 +11,16 @@ import  MyAbstracts  from '../ui/abstracts/MyAbstracts.jsx';
 import  UserAbstracts  from '../ui/abstracts/UserAbstracts.jsx';
 
 import  AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
 Meteor.startup( ()=> {
+injectTapEventPlugin();
     render(
+        <MuiThemeProvider>
         <Router history = { browserHistory }>
             <Route path="/" component={ MainLayout } >
                 <IndexRoute component={ Home } />
@@ -22,7 +29,8 @@ Meteor.startup( ()=> {
                 <Route path="/my-abstracts" component={ MyAbstracts } />
                 <Route path="/user-abstracts" component={ UserAbstracts } />
             </Route>
-        </Router>, 
+        </Router>
+        </MuiThemeProvider>, 
        document.getElementById( 'react-root' ) 
     );
 });

@@ -10,17 +10,21 @@
     "classnames": "^2.2.5",
     "eslint": "^3.4.0",
     "eslint-plugin-react": "^6.2.0",
+    "immutability-helper": "^2.0.0",
+    "material-ui": "^0.16.0",
     "meteor-node-stubs": "~0.2.0",
+    "normalize.css": "~4.2.0",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-pure-render-mixin": "^15.3.1",
-    "react-dom": "^15.3.1",
+    "react-dom": "^15.3.1",    
     "react-modal": "^1.4.0",
     "react-mounter": "^1.2.0",
-    "react-router": "^2.8.1"
+    "react-router": "^2.8.1",
+    "react-tap-event-plugin": "^1.0.0"    
   },
   "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-plugin-react": "^6.2.0"
-  }
+  }  
 }
