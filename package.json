@@ -17,10 +17,18 @@
     "react-dom": "^15.3.1",
     "react-modal": "^1.4.0",
     "react-mounter": "^1.2.0",
-    "react-router": "^2.8.1"
+    "react-router": "^2.8.1",
+    "semantic-ui-react": "^0.54.3"
   },
   "devDependencies": {
     "eslint": "^3.4.0",
-    "eslint-plugin-react": "^6.2.0"
+    "eslint-plugin-react": "^6.2.0",
+    "autoprefixer": "^6.3.1"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {"browsers": ["last 2 versions"]}
+    }
   }
 }
+  
