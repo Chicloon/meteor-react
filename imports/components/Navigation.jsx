@@ -16,9 +16,7 @@ export default class Navigation extends Component {
         
         return (
             <nav>
-                
-                <RaisedButton label="Default" />
-                <RaisedButton label="Primary" primary={true} />
+                                
                
                 <ul className="nav nav-justified">
                     <li className="nav-item">
