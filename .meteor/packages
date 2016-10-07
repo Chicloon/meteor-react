@@ -23,8 +23,10 @@ accounts-ui
 accounts-password
 meteortoys:allthings
 #kadira:flow-router
-twbs:bootstrap
+#twbs:bootstrap
 alanning:roles
 email
 meteorhacks:ssr
 session
+materialize:materialize
+fourseven:scss

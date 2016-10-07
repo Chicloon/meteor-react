@@ -14,17 +14,12 @@ export default class MainLayout extends Component {
     render() {
         return (
             <div>
-                <button className="ui button">
-                    Save
-                </button>
-                <div className="jumbotron">
-                    <div className="container">
-                        <h1 className="display-3">Conference title</h1>
-                    </div>
-                </div>
+                <header>
+                    <h1 className="display-3">Conference title</h1>
+                    <Navigation />
+                </header>
 
                 <div className="container">
-                    <Navigation />
                     {this.props.children}
                 </div>
             </div>
