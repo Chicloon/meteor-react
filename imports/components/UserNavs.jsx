@@ -11,15 +11,11 @@ class UserNavs extends Component {
             if (Roles.userIsInRole(this.props.currentUser, 'admin')) {
                 console.log('welcome admin');
                 return (
-                    <li className="nav-item">
-                        <Link to="user-abstracts" activeClassName="active"> User abstracts</Link>
-                    </li>
+                    <Link to="user-abstracts" activeClassName="active" className="item"> User abstracts</Link>
                 );
             }
             return (
-                <li className="nav-item">
-                    <Link to="my-abstracts" activeClassName="active"> My abstracts</Link>
-                </li>
+                <Link to="my-abstracts" activeClassName="active" className="item"> My abstracts</Link>
             );
         }
         return (null);

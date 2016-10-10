@@ -8,6 +8,7 @@ import Navigation from '../components/Navigation.jsx';
 export default class MainLayout extends Component {
 
     render() {
+        console.log('page loaded');
         return (
             <div>
                 <div className="jumbotron">
