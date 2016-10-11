@@ -24,6 +24,32 @@ class Navigation extends Component {
         browserHistory.push('/' + name);
     } 
 
+    checkUser () {
+        let linkName = '';        
+        if ( Meteor.user() ) {
+            linkName = Roles.userIsInRole(this.props.currentUser, 'admin') ? 'user-abstracts' : 'my-abstracts'
+            console.log(linkName);
+
+            if (  Roles.userIsInRole(this.props.currentUser, 'admin') ) {
+                linkName = 'user-abstracts';
+                return (
+                    <Menu.Item
+                        name='user-abstracts'
+                        active={this.state.activeItem === 'user-abstracts'}
+                        onClick={this.handleItemClick.bind(this)}
+                    > User Abstracts </Menu.Item>
+                );
+            }
+            return (
+                <Menu.Item
+                    name='my-abstracts'
+                    active={this.state.activeItem === 'my-abstracts'}
+                    onClick={this.handleItemClick.bind(this)}
+                > User Abstracts </Menu.Item>    
+            );
+        }
+    }
+
     render() {
         const { activeItem } = this.state;
 
@@ -45,20 +71,9 @@ class Navigation extends Component {
             onClick={this.handleItemClick.bind(this)}
             > Submit abstract </Menu.Item>
 
-            { Meteor.user() ? 
-                Roles.userIsInRole(this.props.currentUser, 'admin') &&  
-                <Menu.Item
-                    name='user-abstracts'
-                    active={activeItem === 'user-abstracts'}
-                    onClick={this.handleItemClick.bind(this)}
-                > User Abstracts </Menu.Item> ||
-                <Menu.Item
-                    name='my-abstracts'
-                    active={activeItem === 'my-abstracts'}
-                    onClick={this.handleItemClick.bind(this)}
-                > User Abstracts </Menu.Item>      
-                : '' }
-
+            
+            { this.checkUser() }
+            
             <AccountsUIWrapper />
 
             <Menu.Menu position='right'> 
