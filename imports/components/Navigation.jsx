@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { IndexLink, Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.jsx';
-import UserNavs from './UserNavs.jsx';
 
 //Semantic imports
-
 import { Input, Menu, Button } from 'semantic-ui-react'
 
-export default class Navigation extends Component {
+class Navigation extends Component {
 
     constructor(props) {
         super(props);
@@ -22,51 +20,61 @@ export default class Navigation extends Component {
       
 
     handleItemClick(event,  { name }){        
-        this.setState({ activeItem: name });        
+        this.setState({ activeItem: name });
+        browserHistory.push('/' + name);
     } 
 
     render() {
         const { activeItem } = this.state;
 
-        // return (
-
-        //     <nav>
-        //         <Menu color='purple' >
-        //             <Menu.Item color='red' name='Home' href='/' active={this.state.activeItem === 'home'} onClick={this.handleItemClick.bind(this)} />  
-        //             <Menu.Item name='Abstracts' href='/abstracts' active={activeItem === 'abstracts'} onClick={this.handleItemClick.bind(this)} />
-        //             <Menu.Item name='Submit abstract' href='/submit-abstract' active={activeItem === 'submit-abstract'} onClick={this.handleItemClick.bind(this)} />
-        //             <UserNavs user = {this.props.user} />
-        //             <Menu.Menu position='right'>
-        //                 <AccountsUIWrapper />                                                  
-        //             </Menu.Menu>
-
-        //         </Menu>                
-        //     </nav>
-        // );
-
-
-
         return (
-            <nav>
-                <div className="ui secondary menu purple inverted">                
-                    <IndexLink to="/" activeClassName="active" className="item"> Home </IndexLink>
-                    <Link to="abstracts" activeClassName="active" className="item"> Abstracts</Link>
-                    <Link to="submit-abstract" activeClassName="active" className="item"> Submit abstract</Link>                
-                    
-                    <UserNavs user = {this.props.user} />
-                            <AccountsUIWrapper />
-                    <div className="right menu">
-                        <div className="item">
-                            <p>Accounts authorization will go here </p>
-                        </div>
-                    </div>                    
-                </div>
-            </nav>
+        <Menu color='blue'>
+            <Menu.Item
+            name='home'
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick.bind(this)}          
+            > Home </Menu.Item>
+            <Menu.Item
+            name='abstracts'
+            active={activeItem === 'abstracts'}
+            onClick={this.handleItemClick.bind(this)}
+            > Abstracts </Menu.Item>        
+            <Menu.Item
+            name='submit-abstract'
+            active={activeItem === 'submit-abstract'}
+            onClick={this.handleItemClick.bind(this)}
+            > Submit abstract </Menu.Item>
+
+            { Meteor.user() ? 
+                Roles.userIsInRole(this.props.currentUser, 'admin') &&  
+                <Menu.Item
+                    name='user-abstracts'
+                    active={activeItem === 'user-abstracts'}
+                    onClick={this.handleItemClick.bind(this)}
+                > User Abstracts </Menu.Item> ||
+                <Menu.Item
+                    name='my-abstracts'
+                    active={activeItem === 'my-abstracts'}
+                    onClick={this.handleItemClick.bind(this)}
+                > User Abstracts </Menu.Item>      
+                : '' }
+
+            <AccountsUIWrapper />
+
+            <Menu.Menu position='right'> 
+                <Menu.Item
+                name='login'
+                active={activeItem === 'login'}
+                onClick={this.handleItemClick.bind(this)}
+                > Login buttons will go here </Menu.Item>
+            </Menu.Menu>
+        </Menu>
         );
     }
 }
 
-
-
-
-
+export default createContainer(() => {
+    return {
+        currentUser: Meteor.user(),
+    };
+}, Navigation);

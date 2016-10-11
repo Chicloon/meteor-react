@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
 import './accounts-config.js';
 
 import  MainLayout from '../layouts/MainLayout.jsx';
@@ -17,6 +17,8 @@ Meteor.startup( ()=> {
         <Router history = { browserHistory }>
             <Route path="/" component={ MainLayout } >
                 <IndexRoute component={ Home } />
+                <Redirect from="/" to="/home" />
+                <Route path="/home" component={ Home } />
                 <Route path="/abstracts" component={ AbstractsList } />
                 <Route path="/submit-abstract" component={ SubmitAbstract } />                
                 <Route path="/my-abstracts" component={ MyAbstracts } />
