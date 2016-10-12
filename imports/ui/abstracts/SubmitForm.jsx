@@ -14,6 +14,7 @@ export default class SubmitForm extends Component {
 
         this.state = {
             formValid: true,
+            
         }
     }
 
@@ -23,16 +24,18 @@ export default class SubmitForm extends Component {
         }
     }
 
-    handleSubmit(event) {
+    handleSubmit(event, formContent ) {
         event.preventDefault();
 
-        console.log('form submitted');
+        console.log(formContent);
 
-        let title = ReactDOM.findDOMNode(this.refs.title).value;
-        let authors = ReactDOM.findDOMNode(this.refs.authors).value;
-        let section = ReactDOM.findDOMNode(this.refs.section).value;
-        let content = ReactDOM.findDOMNode(this.refs.content).value;
-        let email = ReactDOM.findDOMNode(this.refs.email).value;
+        let { serializedForm, value } = formContent;
+        console.log(value);
+        let title = formContent.title;
+        let authors = formContent.authors;
+        let section = formContent.section;
+        let content = formContent.content;
+        let email = formContent.email;
 
         if (
             title.length > 5 && title.length < 50
@@ -81,9 +84,9 @@ export default class SubmitForm extends Component {
         let charsCount = this.state.contentCharsValue;
 
         const sections = ['Biology', 'Chemistry', 'Math'];
+        
 
         console.log('props', this.props);
-
         return (
             <Form onSubmit = { this.handleSubmit.bind(this) }>
                 <Form.Input 
@@ -143,7 +146,10 @@ export default class SubmitForm extends Component {
                     rows='5'
                     defaultValue = { this.getFormContent('content') }
                 />
-
+                <Button primary type='submit'>Submit</Button>
+                { !this.state.formValid ? <p> Please fill form correctly </p>
+                    : ''
+                }
                 <SubmitButtons
                     abstract = { this.state.status}
                     cancelEdit = {this.cancelEdit.bind(this) }
