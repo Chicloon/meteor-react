@@ -21,11 +21,11 @@ export default class Abstract extends Component {
     titleRender() {
         if (this.props.abstract.accepted) {
             return (
-                <Label pointing='left' color='green'> Accepted </Label>
+                <Label color='green' style={{float: 'right'}}> Accepted </Label>
             );
         }
         return (
-            <Label pointing='left' color='red'>  Not accepted </Label>
+            <Label color='red' style={{float: 'right'}}>  Not accepted </Label>
         );
     }
 

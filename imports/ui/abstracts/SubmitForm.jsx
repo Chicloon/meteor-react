@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import SubmitButtons from './SubmitButtons.jsx';
 
+import { Button, Form, Input, Select, TextArea } from 'semantic-ui-react'
 
 export default class SubmitForm extends Component {
 
@@ -61,7 +62,7 @@ export default class SubmitForm extends Component {
     getFormContent(field) {
         if (!this.props.abstract) {
             return (
-                null
+               ''
             );
         }
 
@@ -79,97 +80,87 @@ export default class SubmitForm extends Component {
     render() {
         let charsCount = this.state.contentCharsValue;
 
-        const spanContentClassName = classnames({
-            red: charsCount => 100,
-            blue: charsCount < 10,
-        });
+        const sections = ['Biology', 'Chemistry', 'Math'];
 
         console.log('props', this.props);
 
         return (
-
-            <form autoComplete="off" ref="submitAbstractFrom" onSubmit = {this.handleSubmit.bind(this) } className="new-task">
-                <div className="form-group">
-                    <label htmlFor="title">Title </label>
+            <Form onSubmit = { this.handleSubmit.bind(this) }>
+                <Form.Input 
+                    label='Title' 
+                    name='title'
+                    maxLength = '50' 
+                    required 
+                    defaultValue = { this.getFormContent('title') }
+                /> 
+                <Form.Input
+                    label='Authors'
+                    maxLength = '50'
+                    name='authors'
+                    required                                        
+                    defaultValue = { this.getFormContent('authors') }                    
+                />
+                <Form.Field >
+                    <label> Authors </label>
                     <input
-                        className="form-control"
-                        maxLength = "50"
-                        id="title"
-                        type="text"
-                        required
-                        ref = "title"
-                        defaultValue = {this.getFormContent('title') }
-                        />
-                    <span> Minimum 10 characters</span>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="authors">Authors </label>
-                    <input
-                        className="form-control"
-                        maxLength = "50"
-                        id="authors"
-                        type="text"
-                        required
-                        ref = "authors"
-                        defaultValue = {this.getFormContent('authors') }
-                        />
-                    <span> Minimum 10 characters</span>
-                </div>
-                
-                <div className="form-group">
-                    <label htmlFor="email">Contact e-mail </label>
-                    <input
-                        className="form-control"
-                        maxLength = "50"
-                        id="email"
-                        type="email"
-                        required
-                        ref = "email"
-                        defaultValue = {this.getFormContent('email') }
-                        />
-                    <span> Minimum 10 characters</span>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="section">Section </label>
+                    maxLength = '50'
+                    name='authors'
+                    required                                        
+                    defaultValue = { this.getFormContent('authors') }
+                    />                    
+                </Form.Field>
+                <Form.Input
+                    label='Contact e-mail'
+                    maxLength = '50'
+                    placeholder='Email'
+                    name='email'
+                    type='email'
+                    required                                        
+                    defaultValue = { this.getFormContent('email') }                    
+                />
+                <Form.Field>
+                    <label> Section </label>
                     <select
-                        className="form-control"
-                        id="section"
-                        required
-                        ref = "section"
-                        defaultValue = {this.getFormContent('section') }
-                        >
-                        <option>Biology</option>
-                        <option>Math</option>
-                        <option>Chemistry</option>
+                        name='section'
+                        placeholder = 'Select section'
+                        defaultValue = { this.getFormContent('section') }>                                                
+                        { 
+                            sections.map( (section) => {
+                                return (
+                                    <option key={ section } value = {section}> 
+                                         {section}
+                                    </option>
+
+                                );
+                            })
+                        }
+                        
                     </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="content">Content </label>
-                    <textarea
-                        className="form-control"
-                        id="content"
-                        ref = "content"
-                        maxLength = "500"
-                        rows="5"
-                        required
-                        defaultValue = {this.getFormContent('content') }
-                        onChange={this.contentfieldChange.bind(this) }
-                        >
-                    </textarea>
-                    <span> Minimum 10 characters</span>
-                    <span id="content-chars-count" className={spanContentClassName } ref="contentCharsValue">  </span>
-                </div>
-                { !this.state.formValid ? <p> Please fill form correctly </p>
-                    : ''
-                }
+                </Form.Field>
+                <Form.TextArea
+                    label='Content'
+                    name='content'
+                    rows='5'
+                    defaultValue = { this.getFormContent('content') }
+                />
+
                 <SubmitButtons
                     abstract = { this.state.status}
                     cancelEdit = {this.cancelEdit.bind(this) }
-                    />
-
-            </form>
+                />
+            </Form>
         );
     }
 
 }
+
+//   { 
+//                             sections.map( (section) => {
+//                                 return (
+//                                     <option key={ section.key } > 
+//                                         section.text
+//                                     </option>
+
+//                                 );
+//                             })
+//                         }

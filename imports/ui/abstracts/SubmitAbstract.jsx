@@ -5,6 +5,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import SubmitForm from './SubmitForm.jsx';
 
+import { Container, Header } from 'semantic-ui-react';
+
 class SubmitAbstract extends Component {
 
     constructor(props) {
@@ -39,13 +41,16 @@ class SubmitAbstract extends Component {
         }
 
         return (
-            <div>
+            <Container>
+                <Header textAlign='center'> 
+                    Please submit your abstract
+                </Header>
                 { !this.state.formSubmitted ? 
                     <SubmitForm submit={this.handleUserInput.bind(this) } />
                     : <div className="alert alert-success"> Your abstract was submitted </div>
 
                 }
-            </div>
+            </Container>
         );
     }
 
