@@ -5,6 +5,8 @@ import { Abstracts } from '../../api/abstracts.js';
 import AbstractButtons from './AbstractButtons.jsx';
 import SubmitForm from './SubmitForm.jsx';
 
+import { Item, List, Label, Table } from 'semantic-ui-react'
+
 export default class Abstract extends Component {
 
     constructor(props) {
@@ -13,64 +15,84 @@ export default class Abstract extends Component {
         this.state = {
             edit: false,
 
-        }        
+        }
     }
 
     titleRender() {
-        if(this.props.abstract.accepted) {
+        if (this.props.abstract.accepted) {
             return (
-                <span style={{float: 'right'}} className = "label label-success" > Accepted </span>
+                <Label pointing='left' color='green'> Accepted </Label>
             );
         }
         return (
-                <span style={{float: 'right'}} className = "label label-danger" > Not accepted </span>
-            );
+            <Label pointing='left' color='red'>  Not accepted </Label>
+        );
     }
 
-    render() {
-      
-        return (
-            <div>
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        {Roles.userIsInRole(this.props.user, 'admin') ? <h3> <span> User: </span> {this.props.abstract.username} </h3> : ''}
-                        <h3 className="panel-title">  <span className="label label-info">Title</span> {this.props.abstract.abstractBody.title}
-                        {this.props.forAllUsers ? '' : this.titleRender()
-                        }
-                        </h3>
-                    </div>
-                    <div className="panel-body">
-                        <ul className="list-group">
-                            <li className="list-group-item">
-                                <span className="label label-info">Authors</span>
-                                <h4>{this.props.abstract.abstractBody.authors} </h4>
-                            </li>
-                            <li className="list-group-item">
-                                <span className="label label-info">Contact e-mail</span>
-                                <h5>{this.props.abstract.abstractBody.email}</h5>
-                            </li>
-                            <li className="list-group-item">
-                                <span className="label label-info">Seciton</span>
-                                <h5>{this.props.abstract.abstractBody.section}</h5>
-                            </li>
-                            <li className="list-group-item">
-                                <span className="label label-info">Content</span>
-                                <p>{this.props.abstract.abstractBody.content}</p>
-                            </li>
 
-                            {this.props.user ? 
-                                <AbstractButtons
-                                key= {this.props.user._id}
-                                user = {this.props.user}
-                                abstract = {this.props.abstract}
-                                showButtons = {this.props.showButtons}
-                                accepted={this.props.abstract.accepted}
-                                />
-                                : '' }
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    render() {
+
+        const { Content, Description, Group, Header, Image, Meta } = Item
+
+        return (
+            <Item>
+                <Content>
+                    <Description>                        
+                        <Table >                        
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell colSpan='2'>
+                                        <b>  {this.props.abstract.abstractBody.title}
+                                            {this.props.forAllUsers ? '' : this.titleRender() }
+                                        </b>
+                                        {Roles.userIsInRole(this.props.user, 'admin') ? <p> <i> User: </i> {this.props.abstract.username}  </p> : ''}
+                                    </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body>
+                                <Table.Row>
+                                    <Table.Cell collapsing>
+                                        <Label horizontal color="blue"> Authors </Label>
+                                    </Table.Cell>
+                                    <Table.Cell>  {this.props.abstract.abstractBody.authors} </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell collapsing>
+                                        <Label horizontal color="blue"> Contact e-mail </Label>
+                                    </Table.Cell>
+                                    <Table.Cell>  {this.props.abstract.abstractBody.email} </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell collapsing>
+                                        <Label horizontal color="blue"> Section </Label>
+                                    </Table.Cell>
+                                    <Table.Cell>   {this.props.abstract.abstractBody.section}} </Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell collapsing verticalAlign='top'>
+                                        <Label horizontal color="blue"> Content </Label>
+                                    </Table.Cell>
+                                    <Table.Cell> {this.props.abstract.abstractBody.content} </Table.Cell>
+                                </Table.Row>
+                                {this.props.user ?
+                                    <Table.Row>
+                                        <Table.Cell colSpan='2'>
+                                            <AbstractButtons
+                                                key= {this.props.user._id}
+                                                user = {this.props.user}
+                                                abstract = {this.props.abstract}
+                                                showButtons = {this.props.showButtons}
+                                                accepted={this.props.abstract.accepted}
+                                                />
+                                        </Table.Cell>
+                                    </Table.Row>
+                                    : null }
+                            </Table.Body>
+                        </Table>
+                    </Description>                    
+                </Content>
+            </Item>
+
         );
     }
 }

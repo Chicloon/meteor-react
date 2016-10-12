@@ -10,7 +10,7 @@ import { Abstacts } from '../../api/abstracts.js';
 // import '../../api/emails.js';
 import SubmitForm from './SubmitForm.jsx';
 
-
+import { Button } from 'semantic-ui-react'
 export default class AbstractButtons extends Component {
 
     constructor(props) {
@@ -82,11 +82,11 @@ export default class AbstractButtons extends Component {
         }
         if (this.props.accepted) {
             return (
-                <button onClick={this.rejectAbstract.bind(this) } style={buttonsStyle} className = "btn btn-danger"> Decline </button>
+                <Button onClick={this.rejectAbstract.bind(this) } size='tiny' negative > Decline </Button>
             );
         } else {
             return (
-                <button onClick={this.acceptAbstract.bind(this) } style={buttonsStyle} className = "btn btn-success"> Accept </button>
+                <Button onClick={this.acceptAbstract.bind(this) } positive size='tiny'> Accept </Button>
             );
         }
     }
@@ -126,10 +126,10 @@ export default class AbstractButtons extends Component {
                 { Roles.userIsInRole(this.props.user, 'admin') || this.props.showButtons ?
                     <div>
                         { this.buttonAccept() }
-                        <button onClick={this.openModal.bind(this) } style={buttonsStyle} className = "btn btn-warning"> Edit </button>
-                        <button onClick={this.deleteAbstract.bind(this) } style={buttonsStyle} className = "btn btn-danger"> Delete </button>
-                        {this.props.abstract.accepted ? <button onClick={this.sendEmail.bind(this) } style={buttonsStyle} className = "btn btn-success"> Send Confirmation Email </button> : '' }
-                    </div> : ''}
+                        <Button onClick={this.openModal.bind(this) } primary size='tiny'> Edit </Button>
+                        <Button onClick={this.deleteAbstract.bind(this) } negative floated='right' size='tiny'> Delete </Button>
+                        {this.props.abstract.accepted ? <Button onClick={this.sendEmail.bind(this) } positive size='tiny'> Send Confirmation </Button> : null }
+                    </div> : null }
 
                 <Modal
                     isOpen={this.state.modalIsOpen}

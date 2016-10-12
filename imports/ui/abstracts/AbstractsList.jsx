@@ -5,6 +5,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Abstracts } from '../../api/abstracts.js';
 import Abstract from './Abstract.jsx';
 
+import { Container, Header, Item } from 'semantic-ui-react'
+
 class AbstractsList extends Component {
     renderAbstracts() {
         let abstracts = this.props.abstracts;
@@ -13,14 +15,18 @@ class AbstractsList extends Component {
             abstracts = this.props.userAbstracts
         }
         return abstracts.map((abstract) => {
+            const groupKey = 'item' + abstract._id;
             return (
-                <Abstract
-                    key = {abstract._id}
-                    abstract = {abstract}
-                    user = {this.props.currentUser}
-                    owner = {abstract}
-                    forAllUsers = {true}
-                  />
+                <Item.Group divided key={groupKey}>                    
+                    <Abstract
+                        key = {abstract._id}
+                        abstract = {abstract}
+                        user = {this.props.currentUser}
+                        owner = {abstract}
+                        forAllUsers = {true}
+                    />                    
+                </Item.Group>
+
             );
         });
     }
@@ -28,13 +34,10 @@ class AbstractsList extends Component {
     render() {
         Session.set('Meteor.loginButtons.dropdownVisible',false);
         return (
-            <div className="container">
-                <h2> Accepted abstracts at the moment </h2>
-                <div>
-                    {this.renderAbstracts() }
-                </div>
-
-            </div>
+            <Container>
+                <Header as='h2' textAlign='center'> Accepted abstracts at the moment </Header>
+                {this.renderAbstracts() }
+            </Container>
         );
     }
 }

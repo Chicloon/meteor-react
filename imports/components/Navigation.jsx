@@ -6,7 +6,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.jsx';
 
 //Semantic imports
-import { Input, Menu, Button } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 class Navigation extends Component {
 
