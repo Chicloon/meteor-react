@@ -33,3 +33,4 @@ session
 semantic:ui
 juliancwirko:postcss
 less
+reactrouter:react-router-ssr

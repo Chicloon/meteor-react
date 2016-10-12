@@ -25,13 +25,8 @@ class Navigation extends Component {
     } 
 
     checkUser () {
-        let linkName = '';        
         if ( Meteor.user() ) {
-            linkName = Roles.userIsInRole(this.props.currentUser, 'admin') ? 'user-abstracts' : 'my-abstracts'
-            console.log(linkName);
-
-            if (  Roles.userIsInRole(this.props.currentUser, 'admin') ) {
-                linkName = 'user-abstracts';
+            if (  Roles.userIsInRole(this.props.currentUser, 'admin') ) {                
                 return (
                     <Menu.Item
                         name='user-abstracts'
@@ -54,7 +49,7 @@ class Navigation extends Component {
         const { activeItem } = this.state;
 
         return (
-        <Menu color='blue'>
+        <Menu color='blue' stackable>
             <Menu.Item
             name='home'
             active={activeItem === 'home'}
