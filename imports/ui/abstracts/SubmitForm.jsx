@@ -51,6 +51,7 @@ export default class SubmitForm extends Component {
                 email: email,
             }
             this.props.submit(abstract);
+            this.props.closeModal();
         } else {
             console.log('form invalid');
             this.setState({ formValid: false });
@@ -92,23 +93,14 @@ export default class SubmitForm extends Component {
                 <Form.Input 
                     label='Title' 
                     name='title'
-                    maxLength = '50' 
-                    required 
-                    defaultValue = { this.getFormContent('title') }
-                /> 
-                <Form.Input
-                    label='Authors'
                     maxLength = '50'
-                    name='authors'
-                    required                                        
-                    defaultValue = { this.getFormContent('authors') }                    
-                />
-                <Form.Field >
+                    defaultValue = { this.getFormContent('title') }
+                />               
+                <Form.Field>
                     <label> Authors </label>
                     <input
                     maxLength = '50'
-                    name='authors'
-                    required                                        
+                    name='authors'                                                      
                     defaultValue = { this.getFormContent('authors') }
                     />                    
                 </Form.Field>
@@ -117,8 +109,7 @@ export default class SubmitForm extends Component {
                     maxLength = '50'
                     placeholder='Email'
                     name='email'
-                    type='email'
-                    required                                        
+                    type='email'                                                      
                     defaultValue = { this.getFormContent('email') }                    
                 />
                 <Form.Field>
@@ -145,8 +136,7 @@ export default class SubmitForm extends Component {
                     name='content'
                     rows='5'
                     defaultValue = { this.getFormContent('content') }
-                />
-                <Button primary type='submit'>Submit</Button>
+                />                
                 { !this.state.formValid ? <p> Please fill form correctly </p>
                     : ''
                 }
@@ -159,14 +149,3 @@ export default class SubmitForm extends Component {
     }
 
 }
-
-//   { 
-//                             sections.map( (section) => {
-//                                 return (
-//                                     <option key={ section.key } > 
-//                                         section.text
-//                                     </option>
-
-//                                 );
-//                             })
-//                         }
