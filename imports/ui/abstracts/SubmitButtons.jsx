@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+
 import { Button } from 'semantic-ui-react'
 
 export default class SubmitButtons extends Component {
@@ -18,11 +19,13 @@ export default class SubmitButtons extends Component {
    
         if (this.props.abstract) {
             return (
-                <Button.Group>
-                    <Button type='submit' primary> Save changes </Button>
-                    <Button.Or />
-                    <Button onClick={this.cancelEdit.bind(this) }> Cancel </Button>
-                </Button.Group>
+                                   
+                            <Button.Group>
+                                <Button type='submit' primary> Save changes </Button>
+                                <Button.Or />
+                                <Button onClick={this.cancelEdit.bind(this) }> Cancel </Button>
+                            </Button.Group>
+                
             );
         }
         return (

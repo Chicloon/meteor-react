@@ -101,6 +101,11 @@ export default class AbstractButtons extends Component {
 
         return (
             <div>
+            <ReactCSSTransitionGroup 
+                    component="div"
+                    transitionName="example" 
+                    transitionEnterTimeout={500} 
+                    transitionLeaveTimeout={300}>
                 { Roles.userIsInRole(this.props.user, 'admin') || this.props.showButtons ?
                     <div>
                         { this.buttonAccept() }                        
@@ -108,6 +113,7 @@ export default class AbstractButtons extends Component {
                         <Button onClick={this.deleteAbstract.bind(this) } negative floated='right' size='tiny'> Delete </Button>
                         {this.props.abstract.accepted ? <Button onClick={this.sendEmail.bind(this) } positive size='tiny'> Send Confirmation </Button> : null }
                     </div> : null }
+            </ReactCSSTransitionGroup>
                 <Modal dimmer='blurring' open={this.state.modalForm} onClose={this.closeModalForm.bind(this)}>
                     <Modal.Header>Edit Abstract</Modal.Header>
                     <Modal.Content>
