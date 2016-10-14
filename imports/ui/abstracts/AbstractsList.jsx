@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { Abstracts } from '../../api/abstracts.js';
 import Abstract from './Abstract.jsx';
@@ -34,10 +35,19 @@ class AbstractsList extends Component {
     render() {
         Session.set('Meteor.loginButtons.dropdownVisible',false);
         return (
+             <ReactCSSTransitionGroup
+                    component='div'
+                    transitionName='example'
+                    transitionEnterTimeout={600}
+                    transitionAppearTimeout={600}
+                    transitionLeaveTimeout={400}
+                    transitionAppear={true}
+                >
             <Container>
                 <Header as='h2' textAlign='center'> Accepted abstracts at the moment </Header>
                 {this.renderAbstracts() }
             </Container>
+            </ReactCSSTransitionGroup>
         );
     }
 }

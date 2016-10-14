@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import SubmitForm from './SubmitForm.jsx';
 
@@ -41,6 +42,14 @@ class SubmitAbstract extends Component {
         }
 
         return (
+            <ReactCSSTransitionGroup
+                    component='div'
+                    transitionName='example'
+                    transitionEnterTimeout={600}
+                    transitionAppearTimeout={600}
+                    transitionLeaveTimeout={400}
+                    transitionAppear={true}
+                >
             <Container>
                 <Header textAlign='center'> 
                     Please submit your abstract
@@ -51,6 +60,7 @@ class SubmitAbstract extends Component {
 
                 }
             </Container>
+            </ReactCSSTransitionGroup>
         );
     }
 

@@ -1,5 +1,5 @@
 .example-enter, .example-appear { 
-  animation: fadeInDown .6s;
+  animation: slideUp .6s;
 }
 
 // .example-appear {
@@ -11,6 +11,19 @@
   opacity: 1;  
 }
 
+
+.title-enter, .title-appear { 
+  animation: fadeInDown .8s;
+}
+
+// .title-appear {
+//   width: 20px;
+//   background: green;
+// }
+
+.title-leave {
+  opacity: 1;  
+}
 
 @keyframes fadeInDown { 
     0% { 
@@ -60,8 +73,24 @@
   100% {
       opacity: 1;
       transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+      opacity: 0;
+      transform: translate3d(0, -60px, 0);
+    
+  }
+  50% {
+      opacity: 0;
+      transform: translate3d(0, -30px, 0);
+    
+  }
+  100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
 
   }
-
 
 }
