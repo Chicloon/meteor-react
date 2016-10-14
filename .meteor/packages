@@ -29,8 +29,9 @@ email
 meteorhacks:ssr
 session
 #poetic:materialize-scss
-#fourseven:scss
+fourseven:scss
 semantic:ui
 juliancwirko:postcss
 less
 reactrouter:react-router-ssr
+stolinski:stylus-multi

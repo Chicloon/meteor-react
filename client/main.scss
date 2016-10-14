@@ -1,0 +1,67 @@
+.example-enter, .example-appear { 
+  animation: fadeInDown .6s;
+}
+
+// .example-appear {
+//   width: 20px;
+//   background: green;
+// }
+
+.example-leave {
+  opacity: 1;  
+}
+
+
+@keyframes fadeInDown { 
+    0% { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+
+  }
+}
+
+
+@keyframes slideOut{
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+
+  }
+
+}
+
+@keyframes slideUp {
+  0% {
+      opacity: 0;
+      transform: translate3d(0, 60px, 0);
+    
+  }
+  100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+
+  }
+
+
+}
