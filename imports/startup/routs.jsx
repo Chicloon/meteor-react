@@ -16,21 +16,6 @@ import AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
 
 
 Meteor.startup(() => {
-    // AppRoutes = (
-    //     <Router history = { browserHistory }>
-    //         <Route path="/" component={ MainLayout } >
-    //             <IndexRoute component={ Home } />
-    //             <Redirect from="/" to="/home" />
-    //             <Route path="/home" component={ Home } />
-    //             <Route path="/abstracts" component={ AbstractsList } />
-    //             <Route path="/submit-abstract" component={ SubmitAbstract } />                
-    //             <Route path="/my-abstracts" component={ MyAbstracts } />
-    //             <Route path="/user-abstracts" component={ UserAbstracts } />
-    //         </Route>
-    //     </Router>, 
-    //    document.getElementById( 'react-root' ) 
-    // );
-
     AppRoutes = (
        <Router history = { browserHistory }>
             <Route component = { MainLayout }>             
