@@ -38,7 +38,7 @@ export default class SubmitForm extends Component {
         let email = formContent.email;
 
         if (
-            title.length > 5 && title.length < 50
+            title.length > 0 && title.length < 50
             // && authors.length > 5 && authors.length < 50
             // && section.length > 1
             // && content.length > 10 && content.length < 100
