@@ -107,7 +107,6 @@ export default class SubmitForm extends Component {
                 <Form.Input
                     label='Contact e-mail'
                     maxLength = '50'
-                    placeholder='Email'
                     name='email'
                     type='email'                                                      
                     defaultValue = { this.getFormContent('email') }                    
