@@ -66,7 +66,7 @@ export default class Abstract extends Component {
                                     <Table.Cell collapsing>
                                         <Label horizontal color="blue"> Section </Label>
                                     </Table.Cell>
-                                    <Table.Cell>   {this.props.abstract.abstractBody.section}} </Table.Cell>
+                                    <Table.Cell>   {this.props.abstract.abstractBody.section} </Table.Cell>
                                 </Table.Row>
                                 <Table.Row>
                                     <Table.Cell collapsing verticalAlign='top'>
