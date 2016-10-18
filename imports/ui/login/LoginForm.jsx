@@ -1,53 +1,131 @@
 import React, { Component } from 'react';
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { Meteor } from 'meteor/meteor'
-import { Button, Form, Input, Select, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, Grid, Container, Segment, Header, Message, Modal} from 'semantic-ui-react'
 
-export default class Home extends Component {
+export default class LoginForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loggedIn: ''
+            login: true,
+            registrationErrors: []
         }
+
     }
 
-    handleSubmit(event, formContent) {
+    handleLogin(event, formContent) {
         event.preventDefault();
 
         console.log(formContent);
         console.log(this.state.loggedIn);
-        Meteor.loginWithPassword (formContent.login, formContent.password, (err)=> {            
-            this.handleError(err);            
+        Meteor.loginWithPassword(formContent.login, formContent.password, (err) => {
+            err ? this.handleError(err) : this.closeModalForm()
         });
     }
 
-    handleError(err) {
-        console.log('loginError is ' + err.reason);
-        console.log(err);
+    handleRegistration(event, formContent) {
+        event.preventDefault();
+
+        let errorList = []
+        console.log(formContent);
+
+        if (formContent.password != formContent.repeatPassword) {
+            errorList.push('password missmatch');
+        }
+        console.log(this.state.error);
+        this.setState({ registrationErrors: errorList });
+
     }
- 
-    render() {
-        return(                
-            <div>            
-             <Form onSubmit = { this.handleSubmit.bind(this) }>
-                <Form.Input 
-                    label='Login' 
-                    name='login'                    
-                />     
-                <Form.Input 
-                    label='Password' 
-                    name='password' 
-                    type='password'                   
-                />
-                <Button type='submit' primary icon size='tiny'> Ok </Button>
-                <Button primary icon size='tiny'> LogIn </Button>     
-                <Button icon size='tiny'> Register </Button>
-            </Form>
-            </div>
-        );
-    }
+
+handleError(err) {
+    console.log('loginError is ' + err.reason);
+    console.log(err);
+}
+
+closeModalForm() {
+    this.setState({ login: false })
+    window.history.back();
+}
+
+
+render() {
+    let header = {
+        marginBottom: '16px'
+    };
+    return (
+
+
+        <Modal dimmer='blurring' open={this.state.login} onClose={this.closeModalForm.bind(this) }>
+            <Segment>
+                <Grid stackable columns={2}>
+                    <Grid.Row>
+                    <Grid.Column>
+                        <Segment>
+                            <Container textAlign='center' style={header}>
+                                <Header> Log In </Header>
+                            </Container>
+                            <Form onSubmit = { this.handleLogin.bind(this) }>
+                                <Form.Input
+                                    name='login'
+                                    placeholder='Login'
+                                    icon='user'
+                                    iconPosition='left'
+                                    />
+                                <Form.Input
+                                    name='password'
+                                    type='password'
+                                    placeholder='Password'
+                                    icon='lock'
+                                    iconPosition='left'
+                                    />
+                                <Button type='submit' primary icon size='tiny'> Login </Button>
+                            </Form>
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Segment>
+                            <Container textAlign='center' style={header}>
+                                <Header> Register </Header>
+                            </Container>
+                            <Form onSubmit = { this.handleRegistration.bind(this) }>
+                                <Form.Input
+                                    name='login'
+                                    placeholder='Login'
+                                    icon='user'
+                                    iconPosition='left'
+                                    />
+                                <Form.Input
+                                    name='password'
+                                    type='password'
+                                    placeholder='Password'
+                                    icon='lock'
+                                    iconPosition='left'
+                                    />
+                                <Form.Input
+                                    name='repeatPassword'
+                                    type='password'
+                                    placeholder='Repeat password'
+                                    icon='lock'
+                                    iconPosition='left'
+                                    />
+                                <Button type='submit' primary icon size='tiny'> Register </Button>
+                            </Form>
+
+                            { this.state.registrationErrors.length > 0 ?
+                                <Message
+                                    negative
+                                    list = {this.state.error}
+                                    /> : ''}
+
+                        </Segment>
+                    </Grid.Column>
+                </Grid.Row>
+                </Grid>
+            </Segment>
+        </Modal>
+    );
+}
 
 } 
