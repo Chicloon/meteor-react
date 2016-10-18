@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/api/abstracts.js';
 import '../imports/api/emails.js';
 import '../imports/startup/server/mail-url.js';
-import { Accounts } from 'meteor/accounts-base'
+import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {
   console.log('server started');

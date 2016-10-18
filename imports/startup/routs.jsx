@@ -9,7 +9,7 @@ import AbstractsList  from '../ui/abstracts/AbstractsList.jsx';
 import SubmitAbstract  from '../ui/abstracts/SubmitAbstract.jsx';
 import MyAbstracts  from '../ui/abstracts/MyAbstracts.jsx';
 import UserAbstracts  from '../ui/abstracts/UserAbstracts.jsx';
-import LoginForm from '../ui/login/LoginForm.jsx';
+import LoginForm from '../components/login/LoginForm.jsx';
 
 import AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
 

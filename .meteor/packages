@@ -34,7 +34,7 @@ semantic:ui
 juliancwirko:postcss
 less
 reactrouter:react-router-ssr
-stolinski:stylus-multi
+#stolinski:stylus-multi
 
 std:accounts-semantic
 std:accounts-ui
