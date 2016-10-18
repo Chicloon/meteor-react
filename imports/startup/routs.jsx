@@ -9,8 +9,11 @@ import AbstractsList  from '../ui/abstracts/AbstractsList.jsx';
 import SubmitAbstract  from '../ui/abstracts/SubmitAbstract.jsx';
 import MyAbstracts  from '../ui/abstracts/MyAbstracts.jsx';
 import UserAbstracts  from '../ui/abstracts/UserAbstracts.jsx';
+import LoginForm from '../ui/login/LoginForm.jsx';
 
 import AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
+
+import { Accounts, STATES } from 'meteor/std:accounts-ui';
 
 // import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr';
 
@@ -21,6 +24,9 @@ Meteor.startup(() => {
             <Route component = { MainLayout }>             
                 <Redirect from="/" to="/home" />
                 <Route path="/home" component={ Home } />
+                <Route path="/signin" component={ Accounts.ui.LoginForm } formState={ STATES.SIGN_IN } />
+                <Route path="/login" component={ LoginForm } />
+                <Route path="/signup" component={ Accounts.ui.LoginForm } formState={ STATES.SIGN_UP } />
                 <Route path="/abstracts" component={ AbstractsList } />
                 <Route path="/submit-abstract" component={ SubmitAbstract } />                
                 <Route path="/my-abstracts" component={ MyAbstracts } />

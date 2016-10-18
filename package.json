@@ -19,6 +19,7 @@
     "react-mounter": "^1.2.0",
     "react-router": "^2.8.1",
     "semantic-ui-react": "^0.54.3"
+    
   },
   "devDependencies": {
     "eslint": "^3.4.0",
@@ -27,8 +28,11 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {"browsers": ["last 2 versions"]}
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
     }
   }
 }
-  

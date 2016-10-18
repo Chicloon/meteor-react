@@ -21,13 +21,15 @@ export default class MainLayout extends Component {
                     transitionLeaveTimeout={400}
                     transitionAppear={true}
                     >
-                    <div className="container">
-                        <h1 className="display-3">Conference title</h1>
+                    <div className="segment">
+                        <h1>Conference title</h1>
                     </div>
                 </ReactCSSTransitionGroup>
 
                 <div className="container">
                     <Navigation />
+                </div>
+                <div className="container">
                     {this.props.children}
                 </div>
             </div>
