@@ -62,10 +62,11 @@ render() {
                 <Grid stackable columns={2}>
                     <Grid.Row>
                     <Grid.Column>
-                        <Segment>
+                        <Segment style={{height:'100%' }} >
                             <Container textAlign='center' style={header}>
                                 <Header> Log In </Header>
                             </Container>
+                            <Container fluid>
                             <Form onSubmit = { this.handleLogin.bind(this) }>
                                 <Form.Input
                                     name='login'
@@ -80,8 +81,9 @@ render() {
                                     icon='lock'
                                     iconPosition='left'
                                     />
-                                <Button type='submit' primary icon size='tiny'> Login </Button>
+                                <Button type='submit' fluid primary> Login </Button>
                             </Form>
+                            </Container>
                         </Segment>
                     </Grid.Column>
                     <Grid.Column>
@@ -110,7 +112,7 @@ render() {
                                     icon='lock'
                                     iconPosition='left'
                                     />
-                                <Button type='submit' primary icon size='tiny'> Register </Button>
+                                <Button type='submit' primary fluid> Register </Button>
                             </Form>
 
                             { this.state.registrationErrors.length > 0 ?
