@@ -106,7 +106,6 @@ srp@1.0.9
 standard-minifier-js@1.2.0
 std:accounts-semantic@1.1.5
 std:accounts-ui@1.1.15
-stolinski:stylus-multi@1.4.3
 templating@1.1.14
 templating-tools@1.0.4
 tmeasday:check-npm-versions@0.2.0

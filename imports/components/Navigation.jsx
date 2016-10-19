@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import AccountsUIWrapper from '../ui/AccountsUIWrapper.jsx';
+import Authorization from './authorization/Authorization.jsx';
 
 //Semantic imports
 import { Menu } from 'semantic-ui-react'
@@ -71,12 +72,8 @@ class Navigation extends Component {
             
             <AccountsUIWrapper />
 
-            <Menu.Menu position='right'> 
-                <Menu.Item
-                name='login'
-                active={activeItem === 'login'}
-                onClick={this.handleItemClick.bind(this)}
-                > Login buttons will go here </Menu.Item>
+            <Menu.Menu position='right'>
+                <Authorization currentUser={this.props.currentUser}  /> 
             </Menu.Menu>
         </Menu>
         );
@@ -88,3 +85,4 @@ export default createContainer(() => {
         currentUser: Meteor.user(),
     };
 }, Navigation);
+                
