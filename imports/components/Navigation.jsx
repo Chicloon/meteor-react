@@ -70,8 +70,6 @@ class Navigation extends Component {
             
             { this.checkUser() }
             
-            <AccountsUIWrapper />
-
             <Menu.Menu position='right'>
                 <Authorization currentUser={this.props.currentUser}  /> 
             </Menu.Menu>

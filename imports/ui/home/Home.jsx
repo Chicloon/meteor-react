@@ -3,6 +3,8 @@ import { Session } from 'meteor/session';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import { Header, Segment, Container } from 'semantic-ui-react'
+
 export default class Home extends Component {
 
     render() {
@@ -16,11 +18,16 @@ export default class Home extends Component {
                     transitionAppearTimeout={600}
                     transitionLeaveTimeout={400}
                     transitionAppear={true}
-                >
-                <p > Wecmole to Home, my dear! </p>
-                <p> To login as administrator <br/> login: admin <br/> password: admin </p>
+                    >
+
+                    <Segment>
+                        <Container>
+                            <Header > Wecmole to Home, my dear! </Header>
+                            <p> To login as administrator <br /> login: admin <br /> password: admin </p>
+                        </Container>
+                    </Segment>
                 </ReactCSSTransitionGroup>
-                
+
 
 
             </div>

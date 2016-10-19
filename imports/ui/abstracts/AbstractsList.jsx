@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Abstracts } from '../../api/abstracts.js';
 import Abstract from './Abstract.jsx';
 
-import { Container, Header, Item } from 'semantic-ui-react'
+import { Container, Header, Item, Segment } from 'semantic-ui-react'
 
 class AbstractsList extends Component {
     renderAbstracts() {
@@ -18,14 +18,14 @@ class AbstractsList extends Component {
         return abstracts.map((abstract) => {
             const groupKey = 'item' + abstract._id;
             return (
-                <Item.Group divided key={groupKey}>                    
+                <Item.Group divided key={groupKey}>
                     <Abstract
-                        key = {abstract._id}
-                        abstract = {abstract}
-                        user = {this.props.currentUser}
-                        owner = {abstract}
-                        forAllUsers = {true}
-                    />                    
+                        key={abstract._id}
+                        abstract={abstract}
+                        user={this.props.currentUser}
+                        owner={abstract}
+                        forAllUsers={true}
+                        />
                 </Item.Group>
 
             );
@@ -33,20 +33,22 @@ class AbstractsList extends Component {
     }
 
     render() {
-        Session.set('Meteor.loginButtons.dropdownVisible',false);
+        Session.set('Meteor.loginButtons.dropdownVisible', false);
         return (
-             <ReactCSSTransitionGroup
-                    component='div'
-                    transitionName='example'
-                    transitionEnterTimeout={600}
-                    transitionAppearTimeout={600}
-                    transitionLeaveTimeout={400}
-                    transitionAppear={true}
+            <ReactCSSTransitionGroup
+                component='div'
+                transitionName='example'
+                transitionEnterTimeout={600}
+                transitionAppearTimeout={600}
+                transitionLeaveTimeout={400}
+                transitionAppear={true}
                 >
-            <Container>
-                <Header as='h2' textAlign='center'> Accepted abstracts at the moment </Header>
-                {this.renderAbstracts() }
-            </Container>
+                <Segment>
+                    <Container>
+                        <Header as='h2' textAlign='center'> Accepted abstracts at the moment </Header>
+                        {this.renderAbstracts()}
+                    </Container>
+                </Segment>
             </ReactCSSTransitionGroup>
         );
     }
@@ -61,7 +63,7 @@ export default createContainer(() => {
     Meteor.subscribe('abstracts');
 
     return {
-        abstracts: Abstracts.find({accepted: true}).fetch(),
+        abstracts: Abstracts.find({ accepted: true }).fetch(),
         currentUser: Meteor.user(),
     };
 }, AbstractsList);

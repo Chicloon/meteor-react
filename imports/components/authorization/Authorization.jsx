@@ -36,7 +36,7 @@ export default class Authorization extends Component {
         event.preventDefault();
 
         Meteor.logout((error)=>{
-            console.error(error.reason)
+            console.error(error);
         });
     }
 
@@ -46,7 +46,7 @@ export default class Authorization extends Component {
         if(!this.props.currentUser) {
             return (
                 <div>
-                    <a className='item' href='' onClick={this.showModalForm.bind(this)}> Sign in  <Icon name='sign in' /> </a>
+                    <a className='item' href='' onClick={this.showModalForm.bind(this)}> Sign In  <Icon name='sign in' /> </a>
                     {this.state.showModalForm ? 
                         <AuthorizationForm hideModal={this.hideModalForm.bind(this)} /> : ''
                     }
@@ -56,8 +56,7 @@ export default class Authorization extends Component {
         }
 
         return (
-            <div>
-                Hello, {this.props.currentUser.username}
+            <div>                
                 <a className='item' href='' onClick={this.signOut.bind(this)}> Sign Out  <Icon name='sign out' /> </a> 
             </div>
         );

@@ -13,8 +13,6 @@ import AuthorizationForm from '../components/authorization/AuthorizationForm.jsx
 
 import AccountsUIWrapper  from '../ui/AccountsUIWrapper.jsx';
 
-import { Accounts, STATES } from 'meteor/std:accounts-ui';
-
 // import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr';
 
 
@@ -24,9 +22,7 @@ Meteor.startup(() => {
             <Route component = { MainLayout }>             
                 <Redirect from="/" to="/home" />
                 <Route path="/home" component={ Home } />
-                <Route path="/signin" component={ Accounts.ui.LoginForm } formState={ STATES.SIGN_IN } />
                 <Route path="/login" component={ AuthorizationForm } />
-                <Route path="/signup" component={ Accounts.ui.LoginForm } formState={ STATES.SIGN_UP } />
                 <Route path="/abstracts" component={ AbstractsList } />
                 <Route path="/submit-abstract" component={ SubmitAbstract } />                
                 <Route path="/my-abstracts" component={ MyAbstracts } />

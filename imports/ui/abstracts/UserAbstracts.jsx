@@ -8,7 +8,7 @@ import AbstractsList from './AbstractsList.jsx';
 import Abstract from './Abstract.jsx';
 
 
-import { Container, Header, Item } from 'semantic-ui-react'
+import { Segment, Header, Item, Container } from 'semantic-ui-react'
 
 class MyAbstracts extends Component {
 
@@ -19,10 +19,10 @@ class MyAbstracts extends Component {
             return (
                 <Item.Group divided key={groupKey}>
                     <Abstract
-                        key = {abstract._id}
-                        abstract = {abstract}
-                        user = {this.props.currentUser}
-                        showButtons= {true}
+                        key={abstract._id}
+                        abstract={abstract}
+                        user={this.props.currentUser}
+                        showButtons={true}
                         />
                 </Item.Group>
             );
@@ -37,10 +37,12 @@ class MyAbstracts extends Component {
             );
         }
         return (
-            <Container>
+            <Segment>
                 <Header as='h2' textAlign='center'> User abstracts </Header>
-                {this.renderAbstracts() }
-            </Container>
+                <Container>
+                    {this.renderAbstracts()}
+                </Container>
+            </Segment>
         );
     }
 }

@@ -6,27 +6,27 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import SubmitForm from './SubmitForm.jsx';
 
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Segment } from 'semantic-ui-react';
 
 class SubmitAbstract extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {           
+        this.state = {
             formSubmitted: false
         }
     }
 
-    handleUserInput(abstract, status) {        
+    handleUserInput(abstract, status) {
         Meteor.call('abstracts.insert', abstract);
-        console.log('status', status );
+        console.log('status', status);
         this.setState({ formSubmitted: true });
     }
 
     render() {
-        Session.set('Meteor.loginButtons.dropdownVisible',false);
-     
+        Session.set('Meteor.loginButtons.dropdownVisible', false);
+
         if (Roles.userIsInRole(this.props.currentUser, 'admin')) {
             console.log(this.props.currentUser);
         }
@@ -43,23 +43,25 @@ class SubmitAbstract extends Component {
 
         return (
             <ReactCSSTransitionGroup
-                    component='div'
-                    transitionName='example'
-                    transitionEnterTimeout={600}
-                    transitionAppearTimeout={600}
-                    transitionLeaveTimeout={400}
-                    transitionAppear={true}
+                component='div'
+                transitionName='example'
+                transitionEnterTimeout={600}
+                transitionAppearTimeout={600}
+                transitionLeaveTimeout={400}
+                transitionAppear={true}
                 >
-            <Container>
-                <Header textAlign='center'> 
-                    Please submit your abstract
+                <Segment>
+                    <Header textAlign='center'>
+                        Please submit your abstract
                 </Header>
-                { !this.state.formSubmitted ? 
-                    <SubmitForm submit={this.handleUserInput.bind(this) } />
-                    : <div className="alert alert-success"> Your abstract was submitted </div>
+                    <Container>
+                        {!this.state.formSubmitted ?
+                            <SubmitForm submit={this.handleUserInput.bind(this)} />
+                            : <div className="alert alert-success"> Your abstract was submitted </div>
 
-                }
-            </Container>
+                        }
+                    </Container>
+                </Segment>
             </ReactCSSTransitionGroup>
         );
     }
@@ -69,7 +71,7 @@ class SubmitAbstract extends Component {
 export default createContainer(() => {
     Meteor.subscribe('abstracts');
 
-    return {        
+    return {
         currentUser: Meteor.user(),
     };
 }, SubmitAbstract);
