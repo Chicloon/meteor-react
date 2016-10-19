@@ -37,7 +37,7 @@ class MyAbstracts extends Component {
             );
         }
         return (
-            <Segment>
+            <Segment vertical>
                 <Header as='h2' textAlign='center'> User abstracts </Header>
                 <Container>
                     {this.renderAbstracts()}

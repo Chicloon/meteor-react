@@ -43,7 +43,7 @@ class AbstractsList extends Component {
                 transitionLeaveTimeout={400}
                 transitionAppear={true}
                 >
-                <Segment>
+                <Segment vertical>
                     <Container>
                         <Header as='h2' textAlign='center'> Accepted abstracts at the moment </Header>
                         {this.renderAbstracts()}

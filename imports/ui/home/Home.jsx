@@ -20,7 +20,7 @@ export default class Home extends Component {
                     transitionAppear={true}
                     >
 
-                    <Segment>
+                    <Segment vertical>
                         <Container>
                             <Header > Wecmole to Home, my dear! </Header>
                             <p> To login as administrator <br /> login: admin <br /> password: admin </p>

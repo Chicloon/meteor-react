@@ -50,7 +50,7 @@ class SubmitAbstract extends Component {
                 transitionLeaveTimeout={400}
                 transitionAppear={true}
                 >
-                <Segment>
+                <Segment vertical>
                     <Header textAlign='center'>
                         Please submit your abstract
                 </Header>
